@@ -1,5 +1,14 @@
 <h1 style="text-align: center">Gesture_Based_UI_Project</h1>
 
+---
+
+# Table of Contents
+
+- [Requirements](#requirements)
+- [Contact](#contact)
+
+<br>
+
 ## Requirements
 
 - **Unity** - Version: 2020.3.29f1
