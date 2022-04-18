@@ -4,26 +4,25 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    public static GameObject player;
     [SerializeField] float speed = 20f;
     Vector3 direction = new Vector3(1, 4);
 
     Rigidbody rb;
+
+    void Start()
+    {
+        player = this.gameObject;
+    }
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector3(Input.GetAxis("Horizontal"), 0);
-
-        if (transform.childCount > 0)
-        {
-            BallBehaviour ball = GetComponentInChildren<BallBehaviour>();
-            ball.Move(direction);
-        }
+        player.transform.Translate(new Vector3(0, Input.GetAxis("Horizontal") * speed * Time.deltaTime, 0));
     }
 
     public static void Die()
