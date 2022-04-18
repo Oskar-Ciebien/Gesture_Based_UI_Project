@@ -4,55 +4,45 @@ using UnityEngine;
 
 public class BallBehaviour : MonoBehaviour
 {
-    [SerializeField] float speed = 20f;
+    private GameObject ball;
+    private Rigidbody rb;
+    Vector3 paddlePos;
+    Vector3 startingPos;
 
-    GameObject ball;
-    Rigidbody rb;
+    public static float initialSpeed = 20f;
 
-    private bool isBouncing = false;
-
-    private Vector2 ballInitialForce;
-
-    private Vector3 ballPosition;
-    private Vector3 force;
-
-    void Start()
+    private void Start()
     {
         ball = this.gameObject;
 
-        ballInitialForce = new Vector2(50.0f, 80.0f);
-        force = new Vector3(20f, 0f, 0f);
+        Vector3 paddlePos = PlayerBehaviour.playerPos;
+        Vector3 startingPos = new Vector3(paddlePos.x, paddlePos.y + 0.5f, 0);
 
-        isBouncing = false;
+        ball.transform.position = startingPos;
+        rb = ball.GetComponent<Rigidbody>();
     }
 
-    private void Awake()
+    private void Update()
     {
-        rb = GetComponent<Rigidbody>();
-    }
+        // Constant Same Speed of Ball
+        rb.velocity = rb.velocity.normalized * initialSpeed;
 
-    void Update()
-    {
-        rb.velocity = rb.velocity.normalized * speed;
-
-        // On Space
-        if (Input.GetButtonDown("Jump") == true)
+        // If Game Started
+        if (GameManager.gameStarted == false)
         {
-            // Check if ball is bouncing
-            if (!isBouncing)
+            // Move ball to starting position
+            ball.transform.position = startingPos;
+
+            // If player pressed Space
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                // Add the initial Force
-                rb.AddForce(ballInitialForce);
+                rb.isKinematic = false;
+                rb.AddForce(new Vector2(0, initialSpeed));
 
-                isBouncing = !isBouncing;
+                GameManager.gameStarted = true;
+
+                print("Game Started!");
             }
-        }
-
-        if (!isBouncing)
-        {
-            ballPosition.x = PlayerBehaviour.player.transform.position.x;
-
-            transform.position = ballPosition;
         }
     }
 
@@ -62,20 +52,21 @@ public class BallBehaviour : MonoBehaviour
         {
             // Bounce
             print("Ball Bounced, Border: " + other.gameObject.tag);
-
-            // rb.AddForce(force * speed);
         }
-        else if (other.gameObject.tag == "Player")
+        else if (other.gameObject.tag == "Paddle")
         {
             // Hit Player
             print("Ball Bounced, Player!");
-
-            // rb.AddForce(force * speed);
+        }
+        else if (other.gameObject.tag == "Block")
+        {
+            // Block Destroyed
+            print("Block Hit. Score!");
         }
         else
         {
             // Player Dead
-            PlayerBehaviour.Die();
+            print("Player Dead! Bottom Border hit!");
         }
     }
 }

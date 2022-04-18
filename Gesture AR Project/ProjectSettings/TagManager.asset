@@ -8,6 +8,9 @@ TagManager:
   - BottomBorder
   - LeftBorder
   - RightBorder
+  - Ball
+  - Paddle
+  - Block
   layers:
   - Default
   - TransparentFX
