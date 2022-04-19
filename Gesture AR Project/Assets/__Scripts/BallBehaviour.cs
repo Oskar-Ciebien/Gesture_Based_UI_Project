@@ -62,6 +62,9 @@ public class BallBehaviour : MonoBehaviour
         {
             // Block Destroyed
             print("Block Hit. Score!");
+
+            // TO-DO
+            // Add Score
         }
         else
         {
