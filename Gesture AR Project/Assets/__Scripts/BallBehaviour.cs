@@ -61,10 +61,7 @@ public class BallBehaviour : MonoBehaviour
         else if (other.gameObject.tag == "Block")
         {
             // Block Destroyed
-            print("Block Hit. Score!");
-
-            // TO-DO
-            // Add Score
+            print("Block Hit!");
         }
         else
         {
