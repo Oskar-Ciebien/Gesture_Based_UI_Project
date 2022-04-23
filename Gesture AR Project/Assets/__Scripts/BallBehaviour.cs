@@ -70,6 +70,7 @@ public class BallBehaviour : MonoBehaviour
         {
             // Player Dead
             print("Player Dead! Bottom Border hit!");
+            PlayerBehaviour.Dead();
         }
     }
 }

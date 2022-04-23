@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -48,6 +49,41 @@ public class PlayerBehaviour : MonoBehaviour
             playerPos = player.transform.position;
             player.transform.Translate(new Vector3(0, Input.GetAxis("Horizontal") * speed * Time.deltaTime, 0));
         }
+    }
+
+    private static void ResetPlayer()
+    {
+        GameManager.lives = GameManager.startingLives;
+    }
+
+    public static void Dead()
+    {
+        if (GameManager.lives > 1 && GameManager.lives <= 3)
+        {
+            RestartScene();
+        }
+        else
+        {
+            DeathScene();
+        }
+    }
+
+    // Restart the Game - Player Died (Still has lives)
+    private static void RestartScene()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        // Load the Scene
+        SceneManager.LoadScene(currentScene.name, LoadSceneMode.Single);
+    }
+
+    // Show the DeathScene - Player Died (No more lives)
+    private static void DeathScene()
+    {
+        // Call ResetPlayer()
+        ResetPlayer();
+        // Load the Scene
+        // SceneManager.LoadScene("DeathScene", LoadSceneMode.Single);
     }
 
     private void OnCollisionEnter(Collision other)
