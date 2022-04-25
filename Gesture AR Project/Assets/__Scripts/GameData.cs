@@ -53,4 +53,14 @@ public class GameData : MonoBehaviour
             scoreText.text = PlayerPrefs.GetInt("Score").ToString();
         }
     }
+
+    public static void DecreaseScore(int decreaseAmount)
+    {
+        if (score > decreaseAmount)
+        {
+            score -= decreaseAmount;
+
+            PlayerPrefs.SetInt("Score", score);
+        }
+    }
 }
