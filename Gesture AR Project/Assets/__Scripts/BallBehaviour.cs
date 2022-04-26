@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class BallBehaviour : MonoBehaviour
 {
+    public GameObject WallContact;
+
     private GameObject ball;
     private Rigidbody rb;
+
     Vector3 paddlePos;
     Vector3 startingPos;
 
@@ -50,8 +53,17 @@ public class BallBehaviour : MonoBehaviour
     {
         if (other.gameObject.tag == "LeftBorder" || other.gameObject.tag == "RightBorder" || other.gameObject.tag == "TopBorder")
         {
+
             // Bounce
             print("Ball Bounced, Border: " + other.gameObject.tag);
+            foreach (ContactPoint contact in other.contacts)
+            {
+                //Instantiate your particle system here.
+                GameObject part = Instantiate(WallContact, contact.point, Quaternion.identity);
+                part.GetComponent<ParticleSystem>().Play();
+                Destroy(part, 3);
+
+            }
         }
         else if (other.gameObject.tag == "Paddle")
         {
