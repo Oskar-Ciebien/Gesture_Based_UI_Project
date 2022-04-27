@@ -35,15 +35,14 @@ public class GameData : MonoBehaviour
 
     void Update()
     {
-        // Commented out for now, until gameStarted logic not implemented
-        // if (GameManager.gameStarted == true)
-        // {
-        if (Time.time - lastUpdate >= 1f)
+        if (GameManager.gameStarted == true)
         {
-            score += 1;
-            lastUpdate = Time.time;
+            if (Time.time - lastUpdate >= 1f)
+            {
+                score += 1;
+                lastUpdate = Time.time;
+            }
         }
-        // }
         print("Score: " + score);
 
         PlayerPrefs.SetInt("Score", score);

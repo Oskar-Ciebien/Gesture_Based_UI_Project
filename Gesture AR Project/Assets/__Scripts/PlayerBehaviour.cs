@@ -92,11 +92,10 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-    
+
         if (other.gameObject.tag == "Ball")
         {
             Rigidbody ballRB = other.gameObject.GetComponent<Rigidbody>();
-            
 
             Vector3 hitPoint = other.contacts[0].point;
             Vector3 paddleCenter = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y);
@@ -113,15 +112,14 @@ public class PlayerBehaviour : MonoBehaviour
                 Destroy(part, 3);
 
             }
-         
 
             // Left
             if (hitPoint.x < paddleCenter.x)
             {
                 ballRB.AddForce(new Vector2(-(Mathf.Abs(difference * force)), BallBehaviour.initialSpeed));
-              
+
             }
-            else
+            else // Right
             {
                 ballRB.AddForce(new Vector2((Mathf.Abs(difference * force)), BallBehaviour.initialSpeed));
             }
@@ -139,7 +137,6 @@ public class PlayerBehaviour : MonoBehaviour
 
             }
         }
-
     }
 
     IEnumerator Flash(Material material)
@@ -148,8 +145,4 @@ public class PlayerBehaviour : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         material.SetColor("_EmissionColor", Color.gray);
     }
-
-   
-
-
 }

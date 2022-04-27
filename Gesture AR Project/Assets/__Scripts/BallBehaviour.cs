@@ -5,14 +5,13 @@ using UnityEngine;
 public class BallBehaviour : MonoBehaviour
 {
     public GameObject WallContact;
-
-    private GameObject ball;
-    private Rigidbody rb;
-
-    Vector3 paddlePos;
-    Vector3 startingPos;
-
     public static float initialSpeed = 20f;
+
+    private Vector3 paddlePos;
+    private static Vector3 startingPos;
+
+    private static GameObject ball;
+    private static Rigidbody rb;
 
     private void Start()
     {
@@ -21,6 +20,7 @@ public class BallBehaviour : MonoBehaviour
         Vector3 paddlePos = PlayerBehaviour.playerPos;
         Vector3 startingPos = new Vector3(paddlePos.x, paddlePos.y + 0.5f, 0);
 
+        // Move ball to starting position
         ball.transform.position = startingPos;
         rb = ball.GetComponent<Rigidbody>();
     }
@@ -29,23 +29,19 @@ public class BallBehaviour : MonoBehaviour
     {
         // Constant Same Speed of Ball
         rb.velocity = rb.velocity.normalized * initialSpeed;
+    }
 
+    public static void StartBall()
+    {
         // If Game Started
         if (GameManager.gameStarted == false)
         {
-            // Move ball to starting position
-            ball.transform.position = startingPos;
+            rb.isKinematic = false;
+            rb.AddForce(new Vector2(0, initialSpeed));
 
-            // If player pressed Space
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                rb.isKinematic = false;
-                rb.AddForce(new Vector2(0, initialSpeed));
+            GameManager.gameStarted = true;
 
-                GameManager.gameStarted = true;
-
-                print("Game Started!");
-            }
+            print("Game Started!");
         }
     }
 
@@ -53,7 +49,6 @@ public class BallBehaviour : MonoBehaviour
     {
         if (other.gameObject.tag == "LeftBorder" || other.gameObject.tag == "RightBorder" || other.gameObject.tag == "TopBorder")
         {
-
             // Bounce
             print("Ball Bounced, Border: " + other.gameObject.tag);
             foreach (ContactPoint contact in other.contacts)
@@ -75,11 +70,15 @@ public class BallBehaviour : MonoBehaviour
             // Block Destroyed
             print("Block Hit!");
         }
-        else
+        else if (other.gameObject.tag == "BottomBorder")
         {
             // Player Dead
             print("Player Dead! Bottom Border hit!");
             PlayerBehaviour.Dead();
+        }
+        else
+        {
+            print("Hit something else!!!");
         }
     }
 }
