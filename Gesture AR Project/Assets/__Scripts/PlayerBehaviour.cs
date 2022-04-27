@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    [SerializeField] float speed = 20f;
+    [SerializeField] static float speed = 20f;
 
     public static GameObject player;
     public static Vector3 playerPos;
@@ -14,8 +14,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     private Rigidbody rb;
     private Material m_Material;
-    private float leftWallPos = -10f;
-    private float rightWallPos = 10f;
+    private static float leftWallPos = -10f;
+    private static float rightWallPos = 10f;
     private float force = 10f;
 
     void Start()
@@ -29,29 +29,30 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Update()
     {
-        Movement();
+        // Movement();
     }
 
-    private void Movement()
+    public static void Movement(Vector2 touchPosition)
     {
         if (playerPos.x < leftWallPos)
         {
             print("Player collided with a wall");
 
             playerPos = player.transform.position;
-            player.transform.Translate(new Vector3(0, 0.05f, 0));
+            player.transform.Translate(new Vector3(0, 0.1f, 0));
         }
         else if (playerPos.x > rightWallPos)
         {
             print("Player collided with a wall");
 
             playerPos = player.transform.position;
-            player.transform.Translate(new Vector3(0, -0.05f, 0));
+            player.transform.Translate(new Vector3(0, -0.1f, 0));
         }
         else
         {
+            // Player Moving
             playerPos = player.transform.position;
-            player.transform.Translate(new Vector3(0, Input.GetAxis("Horizontal") * speed * Time.deltaTime, 0));
+            player.transform.Translate(new Vector3(0, touchPosition.x * Time.deltaTime, 0));
         }
     }
 

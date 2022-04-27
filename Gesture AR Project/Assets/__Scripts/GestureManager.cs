@@ -7,6 +7,7 @@ public class GestureManager : MonoBehaviour
     private Touch touch;
     private Vector2 startingTouchPosition;
     private Vector2 endingTouchPosition;
+    private Vector2 touchPosition;
 
     void Update()
     {
@@ -18,6 +19,11 @@ public class GestureManager : MonoBehaviour
             {
                 case TouchPhase.Began:
                     startingTouchPosition = touch.position;
+                    break;
+
+                case TouchPhase.Moved:
+                    touchPosition = touch.deltaPosition;
+                    PlayerBehaviour.Movement(touchPosition);
                     break;
 
                 case TouchPhase.Ended:
