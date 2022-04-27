@@ -9,9 +9,11 @@ public class PlayerBehaviour : MonoBehaviour
 
     public static GameObject player;
     public static Vector3 playerPos;
+    public GameObject BallContact;
+    public GameObject WallContact;
 
     private Rigidbody rb;
-
+    private Material m_Material;
     private float leftWallPos = -10f;
     private float rightWallPos = 10f;
     private float force = 10f;
@@ -21,6 +23,8 @@ public class PlayerBehaviour : MonoBehaviour
         player = this.gameObject;
 
         rb = player.GetComponent<Rigidbody>();
+        m_Material = GetComponent<Renderer>().material;
+        m_Material.EnableKeyword("_EMISSION");
     }
 
     void Update()
@@ -88,9 +92,11 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+    
         if (other.gameObject.tag == "Ball")
         {
             Rigidbody ballRB = other.gameObject.GetComponent<Rigidbody>();
+            
 
             Vector3 hitPoint = other.contacts[0].point;
             Vector3 paddleCenter = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y);
@@ -98,16 +104,52 @@ public class PlayerBehaviour : MonoBehaviour
             ballRB.velocity = Vector2.zero;
 
             float difference = paddleCenter.x - hitPoint.x;
+            foreach (ContactPoint contact in other.contacts)
+            {
+                //Instantiate your particle system here.
+                GameObject part = Instantiate(BallContact, contact.point, Quaternion.identity);
+                part.GetComponent<ParticleSystem>().Play();
+                StartCoroutine(Flash(m_Material));
+                Destroy(part, 3);
+
+            }
+         
 
             // Left
             if (hitPoint.x < paddleCenter.x)
             {
                 ballRB.AddForce(new Vector2(-(Mathf.Abs(difference * force)), BallBehaviour.initialSpeed));
+              
             }
             else
             {
                 ballRB.AddForce(new Vector2((Mathf.Abs(difference * force)), BallBehaviour.initialSpeed));
             }
         }
+
+        if (other.gameObject.tag == "LeftBorder" || other.gameObject.tag == "RightBorder")
+        {
+            foreach (ContactPoint contact in other.contacts)
+            {
+                //Instantiate your particle system here.
+                GameObject part = Instantiate(WallContact, contact.point, Quaternion.identity);
+                part.GetComponent<ParticleSystem>().Play();
+                StartCoroutine(Flash(m_Material));
+                Destroy(part, 3);
+
+            }
+        }
+
     }
+
+    IEnumerator Flash(Material material)
+    {
+        material.SetColor("_EmissionColor", Color.white);
+        yield return new WaitForSeconds(0.4f);
+        material.SetColor("_EmissionColor", Color.gray);
+    }
+
+   
+
+
 }

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static int startingScore = 0;
     public static int score;
 
+   
     void Start()
     {
         gameStarted = false;
