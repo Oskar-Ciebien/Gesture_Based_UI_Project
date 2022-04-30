@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BallBehaviour : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class BallBehaviour : MonoBehaviour
     public static void StartBall()
     {
         // If Game Started
-        if (GameManager.gameStarted == false)
+        if (GameManager.gameStarted == true)
         {
             rb.isKinematic = false;
             rb.AddForce(new Vector2(0, initialSpeed));
@@ -42,6 +43,18 @@ public class BallBehaviour : MonoBehaviour
             GameManager.gameStarted = true;
 
             print("Game Started!");
+        }
+    }
+
+    public static void StartBallMenu()
+    {
+        // If Game Started
+        if (GameManager.gameStarted == false && SceneManager.GetActiveScene().name == "Main Menu")
+        {
+            rb.isKinematic = false;
+            rb.AddForce(new Vector2(5, initialSpeed));
+
+            print("Ball Started off in Main Menu!");
         }
     }
 
