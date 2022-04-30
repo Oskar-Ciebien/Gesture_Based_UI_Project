@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Vuforia;
 
-public class MyDefaultTrackableEventHandler : DefaultObserverEventHandler
+public class CustomDefaultTrackableEventHandler : DefaultObserverEventHandler
 {
     // == Public Fields ==
     public static bool TrueFalse = false;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerBehaviour : MonoBehaviour
+public class PaddleBehaviour : MonoBehaviour
 {
     public static GameObject player;
     public static Vector3 playerPos;

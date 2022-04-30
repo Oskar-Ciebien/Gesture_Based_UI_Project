@@ -17,7 +17,7 @@ public class BallBehaviour : MonoBehaviour
     {
         ball = this.gameObject;
 
-        Vector3 paddlePos = PlayerBehaviour.playerPos;
+        Vector3 paddlePos = PaddleBehaviour.playerPos;
         Vector3 startingPos = new Vector3(paddlePos.x, paddlePos.y + 0.5f, 0);
 
         // Move ball to starting position
@@ -82,7 +82,7 @@ public class BallBehaviour : MonoBehaviour
         {
             // Player Dead
             print("Player Dead! Bottom Border hit!");
-            PlayerBehaviour.Dead();
+            PaddleBehaviour.Dead();
         }
     }
 }

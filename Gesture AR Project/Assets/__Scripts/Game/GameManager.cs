@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MyDefaultTrackableEventHandler
+public class GameManager : CustomDefaultTrackableEventHandler
 {
     // == Serialized Fields ==
     [SerializeField] private GameObject uiPanel;
@@ -24,7 +24,7 @@ public class GameManager : MyDefaultTrackableEventHandler
 
     private void Update()
     {
-        if (MyDefaultTrackableEventHandler.TrueFalse == true)
+        if (CustomDefaultTrackableEventHandler.TrueFalse == true)
         {
             // Enable UI and Game Objects
             uiPanel.SetActive(true);

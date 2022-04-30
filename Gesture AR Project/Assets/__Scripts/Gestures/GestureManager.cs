@@ -23,7 +23,7 @@ public class GestureManager : MonoBehaviour
 
                 case TouchPhase.Moved:
                     touchPosition = touch.deltaPosition;
-                    PlayerBehaviour.Movement(touchPosition);
+                    PaddleBehaviour.Movement(touchPosition);
                     break;
 
                 case TouchPhase.Ended:
