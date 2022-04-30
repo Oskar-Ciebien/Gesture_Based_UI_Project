@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    [SerializeField] static float speed = 20f;
-
     public static GameObject player;
     public static Vector3 playerPos;
     public GameObject BallContact;

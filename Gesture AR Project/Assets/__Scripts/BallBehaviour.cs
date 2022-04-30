@@ -70,15 +70,19 @@ public class BallBehaviour : MonoBehaviour
             // Block Destroyed
             print("Block Hit!");
         }
-        else if (other.gameObject.tag == "BottomBorder")
+        else
+        {
+            print("Hit something else!!!");
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "BottomBorder")
         {
             // Player Dead
             print("Player Dead! Bottom Border hit!");
             PlayerBehaviour.Dead();
-        }
-        else
-        {
-            print("Hit something else!!!");
         }
     }
 }
