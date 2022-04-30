@@ -19,6 +19,7 @@ public class GameManager : CustomDefaultTrackableEventHandler
 
     private void Awake()
     {
+        // Initialise the instance
         if (instance == null) instance = this;
     }
 

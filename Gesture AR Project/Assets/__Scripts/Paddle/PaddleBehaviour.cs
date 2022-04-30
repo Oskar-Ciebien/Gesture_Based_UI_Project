@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class PaddleBehaviour : MonoBehaviour
 {
+    // == Public Fields ==
     public static GameObject player;
     public static Vector3 playerPos;
     public GameObject BallContact;
     public GameObject WallContact;
 
+    // == Private Fields ==
     private Rigidbody rb;
     private Material m_Material;
     private static float leftWallPos = -10f;
@@ -18,31 +20,32 @@ public class PaddleBehaviour : MonoBehaviour
 
     void Start()
     {
+        // Initialise the instance
         player = this.gameObject;
 
+        // Set the Components
         rb = player.GetComponent<Rigidbody>();
         m_Material = GetComponent<Renderer>().material;
         m_Material.EnableKeyword("_EMISSION");
     }
 
-    void Update()
-    {
-        // Movement();
-    }
-
     public static void Movement(Vector2 touchPosition)
     {
+        // Touched left border
         if (playerPos.x < leftWallPos)
         {
-            print("Player collided with a wall");
+            print("Player collided with left border!");
 
+            // Move player back inside the borders
             playerPos = player.transform.position;
             player.transform.Translate(new Vector3(0, 0.1f, 0));
         }
+        // Touched right border
         else if (playerPos.x > rightWallPos)
         {
-            print("Player collided with a wall");
+            print("Player collided with right border!");
 
+            // Move player back inside the borders
             playerPos = player.transform.position;
             player.transform.Translate(new Vector3(0, -0.1f, 0));
         }
@@ -56,17 +59,22 @@ public class PaddleBehaviour : MonoBehaviour
 
     private static void ResetPlayer()
     {
+        // Reset lives
         GameManager.lives = GameManager.startingLives;
     }
 
     public static void Dead()
     {
+        // If still enough lives left
         if (GameManager.lives > 1 && GameManager.lives <= 3)
         {
+            // Restart Scene
             RestartScene();
         }
+        // If no more lives left
         else
         {
+            // Set the death scene
             DeathScene();
         }
     }
@@ -91,17 +99,22 @@ public class PaddleBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-
+        // If collided with the ball
         if (other.gameObject.tag == "Ball")
         {
+            // Get rigid body of the ball
             Rigidbody ballRB = other.gameObject.GetComponent<Rigidbody>();
 
+            // Set the hit point and center of the paddle
             Vector3 hitPoint = other.contacts[0].point;
             Vector3 paddleCenter = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y);
 
+            // Set the ball's velocity to zero
             ballRB.velocity = Vector2.zero;
 
+            // Get the different from center and hit point
             float difference = paddleCenter.x - hitPoint.x;
+
             foreach (ContactPoint contact in other.contacts)
             {
                 //Instantiate your particle system here.
@@ -109,22 +122,23 @@ public class PaddleBehaviour : MonoBehaviour
                 part.GetComponent<ParticleSystem>().Play();
                 StartCoroutine(Flash(m_Material));
                 Destroy(part, 3);
-
             }
 
-            // Left
+            // Left Side of paddle hit
             if (hitPoint.x < paddleCenter.x)
             {
+                // Add force to the ball to the left
                 ballRB.AddForce(new Vector2(-(Mathf.Abs(difference * force)), BallBehaviour.initialSpeed));
-
             }
-            else // Right
+            else // Right side of paddle hit
             {
+                // Add force to the ball to the right
                 ballRB.AddForce(new Vector2((Mathf.Abs(difference * force)), BallBehaviour.initialSpeed));
             }
         }
 
-        if (other.gameObject.tag == "LeftBorder" || other.gameObject.tag == "RightBorder")
+        // If hit the left, top and right border
+        if (other.gameObject.tag == "LeftBorder" || other.gameObject.tag == "RightBorder" || other.gameObject.tag == "TopBorder")
         {
             foreach (ContactPoint contact in other.contacts)
             {
@@ -133,7 +147,6 @@ public class PaddleBehaviour : MonoBehaviour
                 part.GetComponent<ParticleSystem>().Play();
                 StartCoroutine(Flash(m_Material));
                 Destroy(part, 3);
-
             }
         }
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GestureManager : MonoBehaviour
 {
+    // == Private Fields ==
     private Touch touch;
     private Vector2 startingTouchPosition;
     private Vector2 endingTouchPosition;
@@ -15,6 +16,7 @@ public class GestureManager : MonoBehaviour
         {
             touch = Input.GetTouch(0);
 
+            // Types of touch phases
             switch (touch.phase)
             {
                 case TouchPhase.Began:
@@ -23,6 +25,8 @@ public class GestureManager : MonoBehaviour
 
                 case TouchPhase.Moved:
                     touchPosition = touch.deltaPosition;
+
+                    // Call movement on the position
                     PaddleBehaviour.Movement(touchPosition);
                     break;
 
@@ -31,10 +35,12 @@ public class GestureManager : MonoBehaviour
                     break;
             }
 
+            // If tapped without swipe
             if (startingTouchPosition == endingTouchPosition)
             {
                 // if (touch.fingerId == 0)
                 // {
+                // Start off the ball
                 BallBehaviour.StartBall();
                 // }
 

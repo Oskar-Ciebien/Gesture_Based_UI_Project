@@ -5,14 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class BallBehaviour : MonoBehaviour
 {
+    // == Public Fields ==
     public GameObject WallContact;
     public static float initialSpeed = 20f;
 
+    // == Private Fields ==
     private Vector3 paddlePos;
     private static Vector3 startingPos;
-
     private static GameObject ball;
     private static Rigidbody rb;
+    private static float angleMainMenu = 5f;
 
     private void Start()
     {
@@ -23,6 +25,7 @@ public class BallBehaviour : MonoBehaviour
 
         // Move ball to starting position
         ball.transform.position = startingPos;
+
         rb = ball.GetComponent<Rigidbody>();
     }
 
@@ -34,25 +37,29 @@ public class BallBehaviour : MonoBehaviour
 
     public static void StartBall()
     {
-        // If Game Started
-        if (GameManager.gameStarted == true)
+        // If game not started
+        if (GameManager.gameStarted == false)
         {
+            // Let the ball free
             rb.isKinematic = false;
             rb.AddForce(new Vector2(0, initialSpeed));
 
+            // Game started
             GameManager.gameStarted = true;
 
             print("Game Started!");
         }
     }
 
+    // Start Ball in Main Menu
     public static void StartBallMenu()
     {
-        // If Game Started
+        // If game not started and on main menu scene
         if (GameManager.gameStarted == false && SceneManager.GetActiveScene().name == "Main Menu")
         {
+            // Let the ball free on an angle
             rb.isKinematic = false;
-            rb.AddForce(new Vector2(5, initialSpeed));
+            rb.AddForce(new Vector2(angleMainMenu, initialSpeed));
 
             print("Ball Started off in Main Menu!");
         }
@@ -60,42 +67,30 @@ public class BallBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        // If hit left, top or right border
         if (other.gameObject.tag == "LeftBorder" || other.gameObject.tag == "RightBorder" || other.gameObject.tag == "TopBorder")
         {
-            // Bounce
-            print("Ball Bounced, Border: " + other.gameObject.tag);
+            // Bounce off the border
+            print("Ball Bounced - Border: " + other.gameObject.tag);
             foreach (ContactPoint contact in other.contacts)
             {
                 //Instantiate your particle system here.
                 GameObject part = Instantiate(WallContact, contact.point, Quaternion.identity);
                 part.GetComponent<ParticleSystem>().Play();
                 Destroy(part, 3);
-
             }
-        }
-        else if (other.gameObject.tag == "Paddle")
-        {
-            // Hit Player
-            print("Ball Bounced, Player!");
-        }
-        else if (other.gameObject.tag == "Block")
-        {
-            // Block Destroyed
-            print("Block Hit!");
-        }
-        else
-        {
-            print("Hit something else!!!");
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        // If hit bottom border
         if (other.gameObject.tag == "BottomBorder")
         {
             // Player Dead
-            print("Player Dead! Bottom Border hit!");
             PaddleBehaviour.Dead();
+
+            print("Player Dead! Bottom Border hit!");
         }
     }
 }
