@@ -7,7 +7,7 @@ public class BallBehaviour : MonoBehaviour
 {
     // == Public Fields ==
     public GameObject WallContact;
-    public static float initialSpeed =10f;
+    public static float initialSpeed = 5f;
 
     // == Private Fields ==
     private Vector3 paddlePos;
@@ -19,12 +19,6 @@ public class BallBehaviour : MonoBehaviour
     private void Start()
     {
         ball = this.gameObject;
-
-        Vector3 paddlePos = PaddleBehaviour.playerPos;
-        Vector3 startingPos = new Vector3(paddlePos.x, paddlePos.y + 0.5f, 0);
-
-        // Move ball to starting position
-        ball.transform.position = startingPos;
 
         rb = ball.GetComponent<Rigidbody>();
     }

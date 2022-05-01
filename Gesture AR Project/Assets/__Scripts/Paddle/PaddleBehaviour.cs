@@ -8,6 +8,7 @@ public class PaddleBehaviour : MonoBehaviour
     // == Public Fields ==
     public static GameObject player;
     public static Vector3 playerPos;
+    public static Quaternion playerRotation;
     public GameObject BallContact;
     public GameObject WallContact;
 
@@ -22,6 +23,8 @@ public class PaddleBehaviour : MonoBehaviour
     {
         // Initialise the instance
         player = this.gameObject;
+
+        playerPos = player.transform.position;
 
         // Set the Components
         rb = player.GetComponent<Rigidbody>();
