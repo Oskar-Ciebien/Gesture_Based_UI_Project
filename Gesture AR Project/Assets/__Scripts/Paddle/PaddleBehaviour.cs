@@ -29,6 +29,11 @@ public class PaddleBehaviour : MonoBehaviour
         m_Material.EnableKeyword("_EMISSION");
     }
 
+    void Update()
+    {
+        playerPos = player.transform.position;
+    }
+
     public static void Movement(Vector2 touchPosition)
     {
         // Touched left border

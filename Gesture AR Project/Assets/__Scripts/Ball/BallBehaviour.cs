@@ -7,7 +7,7 @@ public class BallBehaviour : MonoBehaviour
 {
     // == Public Fields ==
     public GameObject WallContact;
-    public static float initialSpeed = 20f;
+    public static float initialSpeed =10f;
 
     // == Private Fields ==
     private Vector3 paddlePos;
