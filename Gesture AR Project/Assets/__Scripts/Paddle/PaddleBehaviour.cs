@@ -94,7 +94,7 @@ public class PaddleBehaviour : MonoBehaviour
         // Call ResetPlayer()
         ResetPlayer();
         // Load the Scene
-        // SceneManager.LoadScene("DeathScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("Death Scene", LoadSceneMode.Single);
     }
 
     private void OnCollisionEnter(Collision other)
