@@ -4,21 +4,28 @@
 
 # Table of Contents
 
+- [Introduction](#introduction)
 - [Requirements](#requirements)
 - [How To Play](#how-to-play)
 - [Contact](#contact)
 
 <br>
 
-## How To Play
+## Introduction
 
-There are a few ways in which you will be able to play this game. They are outlined in the [Wiki](https://github.com/Oskar-Ciebien/Gesture_Based_UI_Project/wiki/How-to-Play).
+This project is a well known Breakout game. Which has been developed inside of Unity, with the use of Vuforia Engine. It is a 3D game developed as part of the Gesture Based UI Development module in the Software Development course at the Atlantic Technological University.
 
 <br>
 
 ## Requirements
 
 - **Unity** - Version: 2020.3.29f1
+
+<br>
+
+## How To Play
+
+There are a few ways in which you will be able to play this game. They are outlined in the [Wiki](https://github.com/Oskar-Ciebien/Gesture_Based_UI_Project/wiki/How-to-Play).
 
 <br>
 
