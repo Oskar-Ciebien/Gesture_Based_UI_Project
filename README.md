@@ -1,4 +1,8 @@
-<h1 style="text-align: center">Gesture_Based_UI_Project</h1>
+<div align="center">
+
+<h1 style="text-align: center">Breakout - Android Game</h1>
+
+</div>
 
 ---
 
@@ -7,6 +11,7 @@
 - [Introduction](#introduction)
 - [Requirements](#requirements)
 - [How To Play](#how-to-play)
+- [Screencast](#screencast)
 - [Contact](#contact)
 
 <br>
@@ -37,9 +42,19 @@ There are a few ways in which you will be able to play this game. They are outli
 
 <br>
 
+## Screencast
+
+The screencast of this game is available [here](). It showcases all of the functionalities and gameplay.
+
+<br>
+
 ## Contact
+
+<div align="center">
 
 |          | Owen Kelly                                     | Oskar Ciebien                              |
 | -------- | ---------------------------------------------- | ------------------------------------------ |
 | LinkedIn | https://www.linkedin.com/in/owenkellysoftware/ | https://www.linkedin.com/in/oskar-ciebien/ |
 | Email    | G00366614@gmit.ie                              | G00369579@gmit.ie                          |
+
+</div>
