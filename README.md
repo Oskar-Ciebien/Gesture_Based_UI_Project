@@ -11,6 +11,7 @@
 - [Introduction](#introduction)
 - [Requirements](#requirements)
 - [How To Play](#how-to-play)
+- [Image to Scan](#image-to-scan)
 - [Screencast](#screencast)
 - [Contact](#contact)
 
@@ -39,6 +40,22 @@ To play this game on an Android mobile device, you will need:
 ## How To Play
 
 There are a few ways in which you will be able to play this game. They are outlined in the [Wiki](https://github.com/Oskar-Ciebien/Gesture_Based_UI_Project/wiki/How-to-Play).
+
+<br>
+
+## Image to Scan
+
+<br>
+
+<div align="center">
+
+<img src="Maze.jpg" alt="Image of a maze - maze.jpg"/>
+
+Make sure to use this image, on start-up of the game.
+
+The game will ask you for an image to scan.
+
+</div>
 
 <br>
 
