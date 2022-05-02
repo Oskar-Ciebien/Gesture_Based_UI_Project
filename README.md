@@ -5,7 +5,14 @@
 # Table of Contents
 
 - [Requirements](#requirements)
+- [How To Play](#how-to-play)
 - [Contact](#contact)
+
+<br>
+
+## How To Play
+
+There are a few ways in which you will be able to play this game. They are outlined in the [Wiki](https://github.com/Oskar-Ciebien/Gesture_Based_UI_Project/wiki/How-to-Play).
 
 <br>
 
