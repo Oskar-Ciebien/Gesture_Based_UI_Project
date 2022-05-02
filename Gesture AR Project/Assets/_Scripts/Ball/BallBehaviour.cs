@@ -66,6 +66,7 @@ public class BallBehaviour : MonoBehaviour
         {
             // Bounce off the border
             print("Ball Bounced - Border: " + other.gameObject.tag);
+            SFXManager.sfxInstance.Audio.PlayOneShot(SFXManager.sfxInstance.Bounce);
             foreach (ContactPoint contact in other.contacts)
             {
                 //Instantiate your particle system here.

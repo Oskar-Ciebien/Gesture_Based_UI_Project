@@ -128,10 +128,11 @@ public class PaddleBehaviour : MonoBehaviour
                 //Instantiate your particle system here.
                 GameObject part = Instantiate(BallContact, contact.point, Quaternion.identity);
                 part.GetComponent<ParticleSystem>().Play();
+                
                 StartCoroutine(Flash(m_Material));
-                Destroy(part, 3);
+                Destroy(part, 2.9f);
             }
-
+            SFXManager.sfxInstance.Audio.PlayOneShot(SFXManager.sfxInstance.Clash);
             // Left Side of paddle hit
             if (hitPoint.x < paddleCenter.x)
             {
@@ -161,8 +162,8 @@ public class PaddleBehaviour : MonoBehaviour
 
     IEnumerator Flash(Material material)
     {
-        material.SetColor("_EmissionColor", Color.white);
-        yield return new WaitForSeconds(0.4f);
-        material.SetColor("_EmissionColor", Color.gray);
+        material.SetColor("_EmissionColor", Color.red);
+        yield return new WaitForSeconds(0.2f);
+        material.SetColor("_EmissionColor", Color.black);
     }
 }

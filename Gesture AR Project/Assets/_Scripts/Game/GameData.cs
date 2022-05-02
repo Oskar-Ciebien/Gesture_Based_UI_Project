@@ -55,7 +55,7 @@ public class GameData : MonoBehaviour
             }
         }
 
-        print("Score: " + score);
+       // print("Score: " + score);
 
         // Set score to player prefs
         PlayerPrefs.SetInt("Score", score);

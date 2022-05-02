@@ -101,8 +101,8 @@ Material:
     - _FaceDilate: 0
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
-    - _GlowInner: 1
-    - _GlowOffset: -0.05
+    - _GlowInner: 0.129
+    - _GlowOffset: -0.39
     - _GlowOuter: 1
     - _GlowPower: 1
     - _GradientScale: 6
