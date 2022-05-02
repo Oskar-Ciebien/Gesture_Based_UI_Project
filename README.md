@@ -19,7 +19,15 @@ This project is a well known Breakout game. Which has been developed inside of U
 
 ## Requirements
 
+To open this project in Unity, you will need:
+
 - **Unity** - Version: 2020.3.29f1
+
+<br>
+
+To play this game on an Android mobile device, you will need:
+
+- **Android** - Version: 8 (API Level 26)
 
 <br>
 
