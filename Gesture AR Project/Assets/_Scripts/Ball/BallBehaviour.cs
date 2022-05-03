@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class BallBehaviour : MonoBehaviour
 {
+    [SerializeField] GameObject objects;
     // == Public Fields ==
     public GameObject WallContact;
     public static float initialSpeed = 5f;
@@ -15,12 +16,15 @@ public class BallBehaviour : MonoBehaviour
     private static GameObject ball;
     private static Rigidbody rb;
     private static float angleMainMenu = 5f;
+    private static Quaternion objectsRotation;
 
     private void Start()
     {
         ball = this.gameObject;
 
         rb = ball.GetComponent<Rigidbody>();
+
+        objectsRotation = objects.transform.rotation;
     }
 
     private void Update()
@@ -34,9 +38,11 @@ public class BallBehaviour : MonoBehaviour
         // If game not started
         if (GameManager.gameStarted == false)
         {
+            ball.transform.rotation = objectsRotation;
+
             // Let the ball free
             rb.isKinematic = false;
-            rb.AddForce(new Vector2(0, initialSpeed));
+            rb.AddForce(new Vector3(initialSpeed, 0, 0));
 
             // Game started
             GameManager.gameStarted = true;
