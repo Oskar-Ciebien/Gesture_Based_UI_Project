@@ -660,6 +660,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7417270894089651985, guid: ebe011be523e7c947a199b7bf1c5f8ca, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7417270894089651985, guid: ebe011be523e7c947a199b7bf1c5f8ca, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7417270894089651985, guid: ebe011be523e7c947a199b7bf1c5f8ca, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 7417270894089651985, guid: ebe011be523e7c947a199b7bf1c5f8ca, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 7417270894089651987, guid: ebe011be523e7c947a199b7bf1c5f8ca, type: 3}
       propertyPath: m_Name
       value: UI Main Menu Canvas
