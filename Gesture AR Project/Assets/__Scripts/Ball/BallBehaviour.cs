@@ -8,7 +8,7 @@ public class BallBehaviour : MonoBehaviour
     [SerializeField] GameObject objects;
     // == Public Fields ==
     public GameObject WallContact;
-    public static float initialSpeed = 5f;
+    public static float initialSpeed = 10f;
 
     // == Private Fields ==
     private Vector3 paddlePos;

@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class BricksManager : MonoBehaviour
 {
+
+    private static BricksManager _instance;
+    public static BricksManager Instance => _instance;
+
+
     private int maxRows = 17;
     private int maxCols = 12;
     private GameObject bricksContainer;
@@ -13,7 +18,8 @@ public class BricksManager : MonoBehaviour
     private float initalSpawnBrickPositionY = 13.2f;
     [SerializeField] float shiftAmount = 2f;
 
-    public Sprite[] sprits;
+    public Material[] materials;
+    public Color[] BrickColours;
     public Block brickPrefab;
 
     public List<Block> RemainingBricks { get; set; }
@@ -24,6 +30,17 @@ public class BricksManager : MonoBehaviour
 
     public int CurrentLevel;
 
+    private void Awake()
+    {
+        if(_instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
     private void Start()
     {
         this.bricksContainer = new GameObject("BricksContainer");
@@ -53,7 +70,7 @@ public class BricksManager : MonoBehaviour
                 if(brickType > 0)
                 {
                    Block newBlock = Instantiate(brickPrefab, new Vector3(currentSpawnX, currentSpawnY, 0.0f - zShift), Quaternion.identity) as Block;
-                    newBlock.Init(bricksContainer.transform);
+                    newBlock.Init(bricksContainer.transform, this.materials[brickType - 1], this.BrickColours[brickType], brickType);
 
                     this.RemainingBricks.Add(newBlock);
                     zShift += 0.0001f;
