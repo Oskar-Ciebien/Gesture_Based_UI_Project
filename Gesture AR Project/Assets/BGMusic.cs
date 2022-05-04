@@ -6,6 +6,8 @@ public class BGMusic : MonoBehaviour
 {
     public static BGMusic BGInstance;
 
+    public AudioSource _audio;
+
     private void Awake()
     {
         if (BGInstance != null && BGInstance != this)

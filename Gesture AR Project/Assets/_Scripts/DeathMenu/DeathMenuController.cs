@@ -5,6 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class DeathMenuController : MonoBehaviour
 {
+
+    private void Start()
+    {
+        BGMusic.BGInstance._audio.pitch = 0.65f;
+    }
+
+
     public void MainMenu()
     {
         // If on the Death Scene
@@ -12,6 +19,16 @@ public class DeathMenuController : MonoBehaviour
         {
             // Change scene to Main Menu Scene
             SceneManager.LoadScene("Main Menu");
+        }
+    }
+
+    public void Restart()
+    {
+        // If on the Death Scene
+        if (SceneManager.GetActiveScene().name == "Death Scene")
+        {
+            // Change scene to Main Menu Scene
+            SceneManager.LoadScene("Level 1");
         }
     }
 
