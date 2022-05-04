@@ -5,19 +5,45 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
+    // == Serialized Fields ==
+    [SerializeField] private float collectibleChance;
+    [SerializeField] private GameObject[] possibleCollectibles;
+
     // == Private Fields ==
     private GameObject block;
     private MeshRenderer mat;
-    public int Hitpoints = 1;
+    private int Hitpoints = 1;
 
     private void Awake()
     {
         this.mat = this.GetComponent<MeshRenderer>();
     }
+
     void Start()
     {
         // Instantiate block object
         block = this.gameObject;
+    }
+
+    private void DestroyWithCollectible()
+    {
+        // Destroy the block
+        Destroy(gameObject);
+
+        // If Array is 0, return
+        if (possibleCollectibles.Length == 0)
+        {
+            return;
+        }
+
+        if (UnityEngine.Random.Range(0, 1) < collectibleChance)
+        {
+            // Set random collectible from array
+            var randomCollectible = possibleCollectibles[UnityEngine.Random.Range(0, possibleCollectibles.Length)];
+
+            // Create it on same position and rotation as destroyed block
+            Instantiate(randomCollectible, transform.position, Quaternion.identity);
+        }
     }
 
     private void OnCollisionEnter(Collision other)
@@ -26,20 +52,18 @@ public class Block : MonoBehaviour
         if (other.gameObject.tag == "Ball")
         {
             this.Hitpoints--;
-            print("Block Destroyed");
 
-            if(this.Hitpoints <= 0)
+            if (this.Hitpoints <= 0)
             {
-                // Destroy Effect
-                // Destroy the block
-                Destroy(block);
+                // Destroy the block and spawn collectible
+                DestroyWithCollectible();
             }
             else
             {
                 // Change material 
                 this.mat.material = BricksManager.Instance.materials[this.Hitpoints - 1];
             }
-           
+
         }
     }
 

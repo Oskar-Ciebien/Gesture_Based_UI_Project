@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameData : MonoBehaviour
 {
     // == Serialized Fields ==
-    private TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI scoreText;
 
     // == Public Fields ==
     public static GameData singleton;

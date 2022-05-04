@@ -24,7 +24,7 @@ public class BricksManager : MonoBehaviour
 
     public List<Block> RemainingBricks { get; set; }
 
-    public List<int[,]> LevelsData {get; set;}
+    public List<int[,]> LevelsData { get; set; }
 
     public int InitialBrickCount { get; set; }
 
@@ -32,7 +32,7 @@ public class BricksManager : MonoBehaviour
 
     private void Awake()
     {
-        if(_instance != null)
+        if (_instance != null)
         {
             Destroy(gameObject);
         }
@@ -45,7 +45,7 @@ public class BricksManager : MonoBehaviour
     {
         this.bricksContainer = new GameObject("BricksContainer");
         objects = GameObject.Find("GameObjects");
-        
+
         this.bricksContainer.transform.parent = objects.transform;
         this.bricksContainer.transform.position = objects.transform.position;
         this.bricksContainer.transform.localScale = objects.transform.localScale;
@@ -67,9 +67,9 @@ public class BricksManager : MonoBehaviour
             {
                 int brickType = currentLevelData[row, col];
 
-                if(brickType > 0)
+                if (brickType > 0)
                 {
-                   Block newBlock = Instantiate(brickPrefab, new Vector3(currentSpawnX, currentSpawnY, 0.0f - zShift), Quaternion.identity) as Block;
+                    Block newBlock = Instantiate(brickPrefab, new Vector3(currentSpawnX, currentSpawnY, 0.0f - zShift), Quaternion.identity) as Block;
                     newBlock.Init(bricksContainer.transform, this.materials[brickType - 1], this.BrickColours[brickType], brickType);
 
                     this.RemainingBricks.Add(newBlock);
@@ -77,7 +77,7 @@ public class BricksManager : MonoBehaviour
                 }
 
                 currentSpawnX += shiftAmount;
-                if(col + 1 == this.maxCols)
+                if (col + 1 == this.maxCols)
                 {
                     currentSpawnX = initalSpawnBrickPositionX;
                 }
@@ -98,14 +98,14 @@ public class BricksManager : MonoBehaviour
         int[,] currentLevel = new int[maxRows, maxCols];
         int currentRow = 0;
 
-        for(int row = 0; row < rows.Length; row++)
+        for (int row = 0; row < rows.Length; row++)
         {
             string line = rows[row];
 
-            if(line.IndexOf("--") == -1)
+            if (line.IndexOf("--") == -1)
             {
                 string[] bricks = line.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                for(int col = 0; col < bricks.Length; col++)
+                for (int col = 0; col < bricks.Length; col++)
                 {
                     int.TryParse(bricks[col], out currentLevel[currentRow, col]);
                 }

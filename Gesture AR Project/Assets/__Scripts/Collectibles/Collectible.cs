@@ -4,6 +4,15 @@ using UnityEngine;
 
 public abstract class Collectible : MonoBehaviour
 {
+    // == Private Fields ==
+    private float speed = 3f;
+
+    void Update()
+    {
+        // Move down
+        transform.Translate(Vector3.back * Time.deltaTime * speed);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         // On collision with Paddle or Bottom Border
