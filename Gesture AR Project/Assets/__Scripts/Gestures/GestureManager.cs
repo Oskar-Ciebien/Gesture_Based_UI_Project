@@ -5,12 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GestureManager : MonoBehaviour
 {
+    // == Public Fields ==
+    public GestureManager gestureManager;
+
     // == Private Fields ==
     private Touch touch;
     private Vector2 startingTouchPosition;
     private Vector2 endingTouchPosition;
     private Vector2 touchPosition;
-    public static GestureManager instance;
 
     private void Awake()
     {
@@ -28,11 +30,13 @@ public class GestureManager : MonoBehaviour
             // Don't destroy it
             DontDestroyOnLoad(this.gameObject);
             // Set it as Singleton
-            instance = this;
+            gestureManager = this;
         }
     }
+
     void Update()
     {
+        // If on Game Scene
         if (SceneManager.GetActiveScene().name == "Game Scene")
         {
             if (Input.touchCount > 0)
@@ -42,11 +46,15 @@ public class GestureManager : MonoBehaviour
                 // Types of touch phases
                 switch (touch.phase)
                 {
+                    // Touch Began
                     case TouchPhase.Began:
+                        //Set starting position
                         startingTouchPosition = touch.position;
                         break;
 
+                    // Swiping Gesture
                     case TouchPhase.Moved:
+                        // Update the touch position
                         touchPosition = touch.deltaPosition;
 
                         // Only if Vuforia is tracking the image
@@ -55,25 +63,22 @@ public class GestureManager : MonoBehaviour
                             // Call movement on the position
                             PaddleBehaviour.Movement(touchPosition);
                         }
-
                         break;
 
+                    // Touch Ended
                     case TouchPhase.Ended:
+                        // Set the ending touch position
                         endingTouchPosition = touch.position;
                         break;
                 }
 
-                // If tapped without swipe
+                // If tapped without swipe - (Tap Gesture)
                 if (startingTouchPosition == endingTouchPosition)
                 {
-                    if (SceneManager.GetActiveScene().name == "Game Scene")
-                    {
-                        // Start off the ball
-                        BallBehaviour.StartBall();
+                    // Start off the ball
+                    BallBehaviour.StartBall();
 
-                        print("Tap Gesture Recognised!");
-                    }
-
+                    // print("Tap Gesture Recognised!");
                 }
             }
         }

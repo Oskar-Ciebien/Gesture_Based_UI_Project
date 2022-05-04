@@ -86,12 +86,16 @@ public class PaddleBehaviour : MonoBehaviour
         // If still enough lives left
         if (GameManager.lives > 1 && GameManager.lives <= 3)
         {
+            GameManager.gameStarted = false;
+
             // Restart Scene
             RestartScene();
         }
         // If no more lives left
         else
         {
+            GameManager.gameStarted = false;
+
             // Set the death scene
             DeathScene();
         }
