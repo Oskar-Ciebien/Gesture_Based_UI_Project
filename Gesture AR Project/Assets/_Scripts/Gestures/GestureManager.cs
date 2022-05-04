@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GestureManager : MonoBehaviour
 {
@@ -9,7 +10,13 @@ public class GestureManager : MonoBehaviour
     private Vector2 startingTouchPosition;
     private Vector2 endingTouchPosition;
     private Vector2 touchPosition;
+    public static GestureManager instance;
 
+    private void Awake()
+    {
+        // Initialise the instance
+        if (instance == null) instance = this;
+    }
     void Update()
     {
         if (Input.touchCount > 0)
@@ -26,8 +33,11 @@ public class GestureManager : MonoBehaviour
                 case TouchPhase.Moved:
                     touchPosition = touch.deltaPosition;
 
-                    // Call movement on the position
-                    PaddleBehaviour.Movement(touchPosition);
+                    if (SceneManager.GetActiveScene().name == "Level 1")
+                    {
+                        // Call movement on the position
+                        PaddleBehaviour.Movement(touchPosition);
+                    }
                     break;
 
                 case TouchPhase.Ended:
@@ -38,13 +48,17 @@ public class GestureManager : MonoBehaviour
             // If tapped without swipe
             if (startingTouchPosition == endingTouchPosition)
             {
-                // if (touch.fingerId == 0)
-                // {
-                // Start off the ball
-                BallBehaviour.StartBall();
-                // }
+                if (SceneManager.GetActiveScene().name == "Level 1")
+                {
+                    // if (touch.fingerId == 0)
+                    // {
+                    // Start off the ball
+                    BallBehaviour.StartBall();
+                    // }
 
-                print("Tap Gesture Recognised!");
+                    print("Tap Gesture Recognised!");
+                }
+               
             }
         }
     }

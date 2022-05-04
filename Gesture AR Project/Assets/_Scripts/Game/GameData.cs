@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameData : MonoBehaviour
 {
     // == Serialized Fields ==
-    [SerializeField] TextMeshProUGUI scoreText;
+    private TextMeshProUGUI scoreText;
 
     // == Public Fields ==
     public static GameData singleton;
@@ -18,6 +19,7 @@ public class GameData : MonoBehaviour
 
     private void Awake()
     {
+        
         // Create singleton
         GameObject[] go = GameObject.FindGameObjectsWithTag("GameData");
 
@@ -36,6 +38,14 @@ public class GameData : MonoBehaviour
         }
 
         // Set the score on the screen
+        scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();  
+        
+        if (SceneManager.GetActiveScene().name == "Level 1")
+                {
+            score = 0;
+            // Set score to player prefs
+            PlayerPrefs.SetInt("Score", score);
+        }
         scoreText.text = PlayerPrefs.GetInt("Score").ToString();
     }
 
@@ -64,7 +74,7 @@ public class GameData : MonoBehaviour
         if (scoreText != null)
         {
             // Set it
-            scoreText.text = PlayerPrefs.GetInt("Score").ToString();
+            scoreText.GetComponent<TextMeshProUGUI>().text = PlayerPrefs.GetInt("Score").ToString();
         }
     }
 

@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
+
+    private void Start()
+    {
+        BGMusic.BGInstance._audio.pitch = 1.0f;
+        Time.timeScale = 1;
+    }
     public void Play()
     {
         // If on main menu

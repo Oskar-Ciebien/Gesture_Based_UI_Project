@@ -193,7 +193,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: QUIT
+  m_text: MAIN MENU
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3857bed2a41e5054c83a5752cdfede4e, type: 2}
   m_sharedMaterial: {fileID: -5427961867578877302, guid: 3857bed2a41e5054c83a5752cdfede4e, type: 2}
@@ -3119,6 +3119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1ff022e8e606349b9fb4d5e54e4bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audio: {fileID: 0}
 --- !u!4 &1578470522
 Transform:
   m_ObjectHideFlags: 0
@@ -3363,7 +3364,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1773977353}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0000090525}
+  m_LocalPosition: {x: 0, y: 0, z: 0.000013411}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 59215590}
@@ -3372,8 +3373,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -168}
-  m_SizeDelta: {x: 154.58, y: 61.97}
+  m_AnchoredPosition: {x: 0.0000076294, y: -178}
+  m_SizeDelta: {x: 360.14, y: 61.97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1773977355
 MonoBehaviour:
@@ -4873,7 +4874,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6079045734273184002, guid: 06e1edf3e25aeb4419adf219c99e548d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6079045734273184060, guid: 06e1edf3e25aeb4419adf219c99e548d, type: 3}
       propertyPath: m_PresetInfoIsWorld
