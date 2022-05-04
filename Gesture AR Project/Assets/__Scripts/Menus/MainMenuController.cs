@@ -11,11 +11,15 @@ public class MainMenuController : MonoBehaviour
         BGMusic.BGInstance._audio.pitch = 1.0f;
         Time.timeScale = 1;
     }
+
     public void Play()
     {
         // If on main menu
         if (SceneManager.GetActiveScene().name == "Main Menu")
         {
+            // Set Starting Lives
+            PlayerPrefs.SetInt("Lives", GameManager.startingLives);
+
             // Change to Game Scene
             SceneManager.LoadScene("Game Scene");
         }

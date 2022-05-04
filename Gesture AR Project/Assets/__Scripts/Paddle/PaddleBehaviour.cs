@@ -22,6 +22,7 @@ public class PaddleBehaviour : MonoBehaviour
     private static Vector2 rightBorderPos;
     private Material m_Material;
     private float force = 10f;
+    private static int lives;
 
     void Start()
     {
@@ -30,6 +31,9 @@ public class PaddleBehaviour : MonoBehaviour
 
         // Set player position
         playerPos = player.transform.position;
+
+        // Set lives
+        lives = PlayerPrefs.GetInt("Lives");
 
         // Set the Components
         rb = player.GetComponent<Rigidbody>();
@@ -77,13 +81,19 @@ public class PaddleBehaviour : MonoBehaviour
     public static void ResetPlayer()
     {
         // Reset lives
-        GameManager.lives = GameManager.startingLives;
+        PlayerPrefs.SetInt("Lives", GameManager.startingLives);
     }
 
     public static void Dead()
     {
+        // Take away one life
+        lives--;
+
+        // Set new lives
+        PlayerPrefs.SetInt("Lives", lives);
+
         // If still enough lives left
-        if (GameManager.lives > 1 && GameManager.lives <= 3)
+        if (lives >= 1 && lives <= 3)
         {
             GameManager.gameStarted = false;
 

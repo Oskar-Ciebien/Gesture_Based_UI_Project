@@ -6,11 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class GameData : MonoBehaviour
 {
-    // == Serialized Fields ==
-    [SerializeField] TextMeshProUGUI scoreText;
-
     // == Public Fields ==
     public static GameData singleton;
+    public TextMeshProUGUI scoreText = null;
+    public TextMeshProUGUI livesText = null;
 
     // == Private Fields ==
     private static int score = 0;
@@ -36,16 +35,16 @@ public class GameData : MonoBehaviour
             singleton = this;
         }
 
-        // Set the score on the screen
-        scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
-
         if (SceneManager.GetActiveScene().name == "Game Scene")
         {
             score = 0;
             // Set score to player prefs
             PlayerPrefs.SetInt("Score", score);
         }
+
+        // Set to Texts
         scoreText.text = PlayerPrefs.GetInt("Score").ToString();
+        livesText.text = PlayerPrefs.GetInt("Lives").ToString();
     }
 
     void Update()
@@ -74,6 +73,13 @@ public class GameData : MonoBehaviour
         {
             // Set it
             scoreText.GetComponent<TextMeshProUGUI>().text = PlayerPrefs.GetInt("Score").ToString();
+        }
+
+        // If livesText is not null
+        if (livesText != null)
+        {
+            // Set the lives to the text
+            livesText.text = PlayerPrefs.GetInt("Lives").ToString();
         }
     }
 
