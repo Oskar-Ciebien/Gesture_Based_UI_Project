@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,5 +24,10 @@ public class Block : MonoBehaviour
             // Destroy the block
             Destroy(block);
         }
+    }
+
+    public void Init(Transform containerTransform)
+    {
+        this.transform.SetParent(containerTransform);
     }
 }
