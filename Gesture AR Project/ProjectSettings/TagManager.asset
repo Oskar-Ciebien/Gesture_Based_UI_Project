@@ -12,6 +12,8 @@ TagManager:
   - Paddle
   - Block
   - GameData
+  - GameManager
+  - GestureManager
   layers:
   - Default
   - TransparentFX

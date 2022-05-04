@@ -19,7 +19,6 @@ public class GameData : MonoBehaviour
 
     private void Awake()
     {
-        
         // Create singleton
         GameObject[] go = GameObject.FindGameObjectsWithTag("GameData");
 
@@ -38,10 +37,10 @@ public class GameData : MonoBehaviour
         }
 
         // Set the score on the screen
-        scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();  
-        
-        if (SceneManager.GetActiveScene().name == "Level 1")
-                {
+        scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
+
+        if (SceneManager.GetActiveScene().name == "Game Scene")
+        {
             score = 0;
             // Set score to player prefs
             PlayerPrefs.SetInt("Score", score);
@@ -65,7 +64,7 @@ public class GameData : MonoBehaviour
             }
         }
 
-       // print("Score: " + score);
+        // print("Score: " + score);
 
         // Set score to player prefs
         PlayerPrefs.SetInt("Score", score);

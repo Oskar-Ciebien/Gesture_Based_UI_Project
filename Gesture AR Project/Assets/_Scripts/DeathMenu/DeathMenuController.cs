@@ -27,8 +27,9 @@ public class DeathMenuController : MonoBehaviour
         // If on the Death Scene
         if (SceneManager.GetActiveScene().name == "Death Scene")
         {
-            // Change scene to Main Menu Scene
-            SceneManager.LoadScene("Level 1");
+            PaddleBehaviour.ResetPlayer();
+            // Change scene to Game Scene
+            SceneManager.LoadScene("Game Scene", LoadSceneMode.Single);
         }
     }
 

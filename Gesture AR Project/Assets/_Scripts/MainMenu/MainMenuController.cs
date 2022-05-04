@@ -16,8 +16,8 @@ public class MainMenuController : MonoBehaviour
         // If on main menu
         if (SceneManager.GetActiveScene().name == "Main Menu")
         {
-            // Change to level 1
-            SceneManager.LoadScene("Level 1");
+            // Change to Game Scene
+            SceneManager.LoadScene("Game Scene");
         }
     }
 

@@ -14,8 +14,22 @@ public class GestureManager : MonoBehaviour
 
     private void Awake()
     {
-        // Initialise the instance
-        if (instance == null) instance = this;
+        // Create singleton
+        GameObject[] go = GameObject.FindGameObjectsWithTag("GestureManager");
+
+        // If there is more than one GestureManager
+        if (go.Length > 1)
+        {
+            // Destroy it
+            Destroy(this.gameObject);
+        }
+        else // Otherwise
+        {
+            // Don't destroy it
+            DontDestroyOnLoad(this.gameObject);
+            // Set it as Singleton
+            instance = this;
+        }
     }
     void Update()
     {
@@ -33,7 +47,7 @@ public class GestureManager : MonoBehaviour
                 case TouchPhase.Moved:
                     touchPosition = touch.deltaPosition;
 
-                    if (SceneManager.GetActiveScene().name == "Level 1")
+                    if (SceneManager.GetActiveScene().name == "Game Scene")
                     {
                         // Call movement on the position
                         PaddleBehaviour.Movement(touchPosition);
@@ -48,7 +62,7 @@ public class GestureManager : MonoBehaviour
             // If tapped without swipe
             if (startingTouchPosition == endingTouchPosition)
             {
-                if (SceneManager.GetActiveScene().name == "Level 1")
+                if (SceneManager.GetActiveScene().name == "Game Scene")
                 {
                     // if (touch.fingerId == 0)
                     // {
@@ -58,7 +72,7 @@ public class GestureManager : MonoBehaviour
 
                     print("Tap Gesture Recognised!");
                 }
-               
+
             }
         }
     }

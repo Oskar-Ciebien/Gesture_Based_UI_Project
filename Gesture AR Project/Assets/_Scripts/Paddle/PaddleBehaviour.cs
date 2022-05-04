@@ -65,7 +65,7 @@ public class PaddleBehaviour : MonoBehaviour
         }
     }
 
-    private static void ResetPlayer()
+    public static void ResetPlayer()
     {
         // Reset lives
         GameManager.lives = GameManager.startingLives;
@@ -128,7 +128,7 @@ public class PaddleBehaviour : MonoBehaviour
                 //Instantiate your particle system here.
                 GameObject part = Instantiate(BallContact, contact.point, Quaternion.identity);
                 part.GetComponent<ParticleSystem>().Play();
-                
+
                 StartCoroutine(Flash(m_Material));
                 Destroy(part, 2.9f);
             }
