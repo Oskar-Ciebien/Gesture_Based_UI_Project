@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class PaddleBehaviour : MonoBehaviour
 {
+    // == Serialized Fields ==
+    [SerializeField] GameObject leftBorder;
+    [SerializeField] GameObject rightBorder;
+
     // == Public Fields ==
     public static GameObject player;
     public static Vector3 playerPos;
@@ -13,16 +17,21 @@ public class PaddleBehaviour : MonoBehaviour
     public GameObject WallContact;
 
     // == Private Fields ==
-    private Rigidbody rb;
+    private static CharacterController controller;
+    private static Rigidbody rb;
     private Material m_Material;
-    private static float leftWallPos = -10f;
-    private static float rightWallPos = 10f;
+    private static Vector2 leftBorderPos;
+    private static Vector2 rightBorderPos;
+    private static float leftBorderPosition = 9f;
+    private static float rightBorderPosition = 9f;
     private float force = 10f;
 
     void Start()
     {
         // Initialise the instance
         player = this.gameObject;
+
+        controller = gameObject.AddComponent<CharacterController>();
 
         playerPos = player.transform.position;
 
@@ -32,36 +41,37 @@ public class PaddleBehaviour : MonoBehaviour
         m_Material.EnableKeyword("_EMISSION");
     }
 
-    void Update()
+    void Awake()
     {
-        playerPos = player.transform.position;
+        leftBorderPos = leftBorder.transform.position;
+        rightBorderPos = rightBorder.transform.position;
     }
 
     public static void Movement(Vector2 touchPosition)
     {
         // Touched left border
-        if (playerPos.x < leftWallPos)
+        if (player.transform.position.x < leftBorderPos.x + 3)
         {
             print("Player collided with left border!");
 
             // Move player back inside the borders
             playerPos = player.transform.position;
-            player.transform.Translate(new Vector3(0, 0.1f, 0));
+            player.transform.Translate(new Vector3(0, 0.4f, 0));
         }
         // Touched right border
-        else if (playerPos.x > rightWallPos)
+        else if (player.transform.position.x > rightBorderPos.x - 3)
         {
             print("Player collided with right border!");
 
             // Move player back inside the borders
             playerPos = player.transform.position;
-            player.transform.Translate(new Vector3(0, -0.1f, 0));
+            player.transform.Translate(new Vector3(0, -0.4f, 0));
         }
         else
         {
             // Player Moving
             playerPos = player.transform.position;
-            player.transform.Translate(new Vector3(0, touchPosition.x * Time.deltaTime, 0));
+            player.transform.Translate(new Vector2(0, touchPosition.x * Time.deltaTime));
         }
     }
 

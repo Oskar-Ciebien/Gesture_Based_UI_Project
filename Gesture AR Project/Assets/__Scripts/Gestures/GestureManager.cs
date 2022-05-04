@@ -33,46 +33,48 @@ public class GestureManager : MonoBehaviour
     }
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (SceneManager.GetActiveScene().name == "Game Scene")
         {
-            touch = Input.GetTouch(0);
-
-            // Types of touch phases
-            switch (touch.phase)
+            if (Input.touchCount > 0)
             {
-                case TouchPhase.Began:
-                    startingTouchPosition = touch.position;
-                    break;
+                touch = Input.GetTouch(0);
 
-                case TouchPhase.Moved:
-                    touchPosition = touch.deltaPosition;
-
-                    if (SceneManager.GetActiveScene().name == "Game Scene")
-                    {
-                        // Call movement on the position
-                        PaddleBehaviour.Movement(touchPosition);
-                    }
-                    break;
-
-                case TouchPhase.Ended:
-                    endingTouchPosition = touch.position;
-                    break;
-            }
-
-            // If tapped without swipe
-            if (startingTouchPosition == endingTouchPosition)
-            {
-                if (SceneManager.GetActiveScene().name == "Game Scene")
+                // Types of touch phases
+                switch (touch.phase)
                 {
-                    // if (touch.fingerId == 0)
-                    // {
-                    // Start off the ball
-                    BallBehaviour.StartBall();
-                    // }
+                    case TouchPhase.Began:
+                        startingTouchPosition = touch.position;
+                        break;
 
-                    print("Tap Gesture Recognised!");
+                    case TouchPhase.Moved:
+                        touchPosition = touch.deltaPosition;
+
+                        // Only if Vuforia is tracking the image
+                        if (CustomDefaultTrackableEventHandler.TrueFalse == true)
+                        {
+                            // Call movement on the position
+                            PaddleBehaviour.Movement(touchPosition);
+                        }
+
+                        break;
+
+                    case TouchPhase.Ended:
+                        endingTouchPosition = touch.position;
+                        break;
                 }
 
+                // If tapped without swipe
+                if (startingTouchPosition == endingTouchPosition)
+                {
+                    if (SceneManager.GetActiveScene().name == "Game Scene")
+                    {
+                        // Start off the ball
+                        BallBehaviour.StartBall();
+
+                        print("Tap Gesture Recognised!");
+                    }
+
+                }
             }
         }
     }
