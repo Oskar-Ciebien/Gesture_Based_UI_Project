@@ -17,13 +17,10 @@ public class PaddleBehaviour : MonoBehaviour
     public GameObject WallContact;
 
     // == Private Fields ==
-    private static CharacterController controller;
     private static Rigidbody rb;
-    private Material m_Material;
     private static Vector2 leftBorderPos;
     private static Vector2 rightBorderPos;
-    private static float leftBorderPosition = 9f;
-    private static float rightBorderPosition = 9f;
+    private Material m_Material;
     private float force = 10f;
 
     void Start()
@@ -31,8 +28,7 @@ public class PaddleBehaviour : MonoBehaviour
         // Initialise the instance
         player = this.gameObject;
 
-        controller = gameObject.AddComponent<CharacterController>();
-
+        // Set player position
         playerPos = player.transform.position;
 
         // Set the Components
@@ -41,27 +37,30 @@ public class PaddleBehaviour : MonoBehaviour
         m_Material.EnableKeyword("_EMISSION");
     }
 
-    void Awake()
+    void Update()
     {
-        leftBorderPos = leftBorder.transform.position;
-        rightBorderPos = rightBorder.transform.position;
+        if (CustomDefaultTrackableEventHandler.TrueFalse == true)
+        {
+            leftBorderPos = leftBorder.transform.position;
+            rightBorderPos = rightBorder.transform.position;
+        }
     }
 
     public static void Movement(Vector2 touchPosition)
     {
         // Touched left border
-        if (player.transform.position.x < leftBorderPos.x + 3)
+        if (player.transform.position.x < leftBorderPos.x + 2)
         {
-            print("Player collided with left border!");
+            // print("Player collided with left border!");
 
             // Move player back inside the borders
             playerPos = player.transform.position;
             player.transform.Translate(new Vector3(0, 0.4f, 0));
         }
         // Touched right border
-        else if (player.transform.position.x > rightBorderPos.x - 3)
+        else if (player.transform.position.x > rightBorderPos.x - 2)
         {
-            print("Player collided with right border!");
+            // print("Player collided with right border!");
 
             // Move player back inside the borders
             playerPos = player.transform.position;
@@ -113,8 +112,8 @@ public class PaddleBehaviour : MonoBehaviour
     // Show the DeathScene - Player Died (No more lives)
     private static void DeathScene()
     {
-        // Call ResetPlayer()
         ResetPlayer();
+
         // Load the Scene
         SceneManager.LoadScene("Death Scene", LoadSceneMode.Single);
     }
