@@ -71,6 +71,8 @@ public class Block : MonoBehaviour
                     SFXManager.sfxInstance.Audio.PlayOneShot(SFXManager.sfxInstance.Break);
                     partbreak.GetComponent<ParticleSystem>().Play();
                     Destroy(partbreak, 3);
+                    // Remove block from remaining blocks on the level
+                    BlocksManager.Instance.RemainingBricks.Remove(this);
                     onBlockDestruction?.Invoke(this);
                     // Destroy the block and spawn collectible
                     DestroyWithCollectible();
