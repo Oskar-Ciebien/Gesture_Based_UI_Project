@@ -10,6 +10,7 @@ public class PaddleBehaviour : MonoBehaviour
     [SerializeField] GameObject rightBorder;
 
     // == Public Fields ==
+    public static Rigidbody rb;
     public static GameObject player;
     public static Vector3 playerPos;
     public static Quaternion playerRotation;
@@ -17,7 +18,6 @@ public class PaddleBehaviour : MonoBehaviour
     public GameObject WallContact;
 
     // == Private Fields ==
-    private static Rigidbody rb;
     private static Vector2 leftBorderPos;
     private static Vector2 rightBorderPos;
     private Material m_Material;
