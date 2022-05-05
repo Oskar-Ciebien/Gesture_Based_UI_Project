@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BGMusic : MonoBehaviour
 {
     public static BGMusic BGInstance;
 
     public AudioSource _audio;
+
 
     private void Awake()
     {
@@ -19,5 +21,7 @@ public class BGMusic : MonoBehaviour
         BGInstance = this;
         DontDestroyOnLoad(this);
     }
+
+  
 
 }
