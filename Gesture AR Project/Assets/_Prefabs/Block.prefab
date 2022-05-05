@@ -111,3 +111,5 @@ MonoBehaviour:
   collectibleChance: 0
   possibleCollectibles:
   - {fileID: 7996282747378193943, guid: 99de502aedb65fa4883ce45dd43aeb08, type: 3}
+  breakEffect: {fileID: 3319775894564188149, guid: faa92bf88ee799841839df3cbc0c1169, type: 3}
+  bounceEffect: {fileID: 749766892734774409, guid: 0e895beda47f81249b86549adf641f98, type: 3}

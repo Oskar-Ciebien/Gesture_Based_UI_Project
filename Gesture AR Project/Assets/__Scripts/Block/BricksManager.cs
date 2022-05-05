@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BricksManager : MonoBehaviour
 {
@@ -49,11 +50,19 @@ public class BricksManager : MonoBehaviour
         this.bricksContainer.transform.parent = objects.transform;
         this.bricksContainer.transform.position = objects.transform.position;
         this.bricksContainer.transform.localScale = objects.transform.localScale;
+
+        this.CurrentLevel = PlayerPrefs.GetInt("Level");
         this.RemainingBricks = new List<Block>();
         this.LevelsData = this.LoadLevelsData();
         this.GenerateBricks();
     }
 
+    public void NewLevel()
+    {
+        this.CurrentLevel = Random.Range(0, 3);
+        PlayerPrefs.SetInt("Level", this.CurrentLevel);
+        PaddleBehaviour.RestartScene();
+    }
     private void GenerateBricks()
     {
         int[,] currentLevelData = this.LevelsData[this.CurrentLevel];

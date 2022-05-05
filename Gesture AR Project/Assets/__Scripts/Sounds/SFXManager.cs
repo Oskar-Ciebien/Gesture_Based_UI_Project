@@ -10,6 +10,8 @@ public class SFXManager : MonoBehaviour
 
     public AudioClip Clash;
 
+    public AudioClip Break;
+
     public static SFXManager sfxInstance;
 
     private void Awake()

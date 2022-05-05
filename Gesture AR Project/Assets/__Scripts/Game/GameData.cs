@@ -50,7 +50,7 @@ public class GameData : MonoBehaviour
     void Update()
     {
         // If game started
-        if (GameManager.gameStarted == true)
+        if (GameManager.instance.gameStarted == true)
         {
             // If time is just one second from last update
             if (Time.time - lastUpdate >= 1f)

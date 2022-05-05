@@ -36,7 +36,7 @@ public class BallBehaviour : MonoBehaviour
     public static void StartBall()
     {
         // If game not started
-        if (GameManager.gameStarted == false)
+        if (GameManager.instance.gameStarted == false)
         {
             ball.transform.rotation = objectsRotation;
 
@@ -45,7 +45,7 @@ public class BallBehaviour : MonoBehaviour
             rb.AddForce(new Vector3(0, 0, initialSpeed));
 
             // Game started
-            GameManager.gameStarted = true;
+            GameManager.instance.gameStarted = true;
 
             print("Game Started!");
         }
@@ -55,7 +55,7 @@ public class BallBehaviour : MonoBehaviour
     public static void StartBallMenu()
     {
         // If game not started and on main menu scene
-        if (GameManager.gameStarted == false && SceneManager.GetActiveScene().name == "Main Menu")
+        if (GameManager.instance.gameStarted == false && SceneManager.GetActiveScene().name == "Main Menu")
         {
             // Let the ball free on an angle
             rb.isKinematic = false;

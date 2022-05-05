@@ -11,7 +11,7 @@ public class GameManager : CustomDefaultTrackableEventHandler
 
     // == Public Fields ==
     public static GameManager instance;
-    public static bool gameStarted = false;
+    public bool gameStarted { get; set; }
     public static int startingLives = 3;
     public static int lives;
     public static int startingScore = 0;
@@ -21,8 +21,12 @@ public class GameManager : CustomDefaultTrackableEventHandler
     {
         // Initialise the instance
         if (instance == null) instance = this;
+        Block.onBrickDestruction += onBlockDestruction;
     }
-
+    private void Start()
+    {
+        Block.onBrickDestruction += onBlockDestruction;
+    }
     private void Update()
     {
         if (CustomDefaultTrackableEventHandler.TrueFalse == true)
@@ -35,6 +39,15 @@ public class GameManager : CustomDefaultTrackableEventHandler
             startPanel.SetActive(false);
 
             // print("Game and UI Set! - Game Manager");
+        }
+    }
+
+    private void onBlockDestruction(Block obj)
+    {
+        if(BricksManager.Instance.RemainingBricks.Count <= 0)
+        {
+            gameStarted = false;
+            BricksManager.Instance.NewLevel();
         }
     }
 }

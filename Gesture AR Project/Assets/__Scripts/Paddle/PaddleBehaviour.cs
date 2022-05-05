@@ -46,11 +46,11 @@ public class PaddleBehaviour : MonoBehaviour
     {
         if (CustomDefaultTrackableEventHandler.TrueFalse == true)
         {
-            leftBorderPos = leftBorder.transform.position;
+            leftBorderPos = leftBorder.transform.position ;
             rightBorderPos = rightBorder.transform.position;
         }
 
-        FrozenPlayer(frozen);
+      
     }
 
     public static void FrozenPlayer(bool froze)
@@ -106,7 +106,7 @@ public class PaddleBehaviour : MonoBehaviour
         // If still enough lives left
         if (lives >= 1 && lives <= 3)
         {
-            GameManager.gameStarted = false;
+            GameManager.instance.gameStarted = false;
 
             // Restart Scene
             RestartScene();
@@ -114,7 +114,7 @@ public class PaddleBehaviour : MonoBehaviour
         // If no more lives left
         else
         {
-            GameManager.gameStarted = false;
+            GameManager.instance.gameStarted = false;
 
             // Set the death scene
             DeathScene();
@@ -122,7 +122,7 @@ public class PaddleBehaviour : MonoBehaviour
     }
 
     // Restart the Game - Player Died (Still has lives)
-    private static void RestartScene()
+    public static void RestartScene()
     {
         Scene currentScene = SceneManager.GetActiveScene();
 

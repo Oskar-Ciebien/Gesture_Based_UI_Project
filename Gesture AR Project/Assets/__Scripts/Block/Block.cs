@@ -9,10 +9,13 @@ public class Block : MonoBehaviour
     [SerializeField] private float collectibleChance;
     [SerializeField] private GameObject[] possibleCollectibles;
 
+    public static event Action<Block> onBrickDestruction;
     // == Private Fields ==
     private GameObject block;
     private MeshRenderer mat;
     private int Hitpoints = 1;
+    public GameObject breakEffect;
+    public GameObject bounceEffect;
 
     private void Awake()
     {
@@ -52,17 +55,33 @@ public class Block : MonoBehaviour
         if (other.gameObject.tag == "Ball")
         {
             this.Hitpoints--;
-
-            if (this.Hitpoints <= 0)
+            // Bounce off the border
+            print("Ball Bounced - Border: " + other.gameObject.tag);
+            
+            foreach (ContactPoint contact in other.contacts)
             {
-                // Destroy the block and spawn collectible
-                DestroyWithCollectible();
+                //Instantiate your particle system here.
+                GameObject partbounce = Instantiate(bounceEffect, contact.point, Quaternion.identity);
+                SFXManager.sfxInstance.Audio.PlayOneShot(SFXManager.sfxInstance.Bounce);
+                partbounce.GetComponent<ParticleSystem>().Play();
+                Destroy(partbounce, 3);
+                if (this.Hitpoints <= 0)
+                {
+                    GameObject partbreak = Instantiate(breakEffect, contact.point, Quaternion.identity);
+                    SFXManager.sfxInstance.Audio.PlayOneShot(SFXManager.sfxInstance.Break);
+                    partbreak.GetComponent<ParticleSystem>().Play();
+                    Destroy(partbreak, 3);
+                    onBrickDestruction?.Invoke(this);
+                    // Destroy the block and spawn collectible
+                    DestroyWithCollectible();
+                }
+                else
+                {
+                    // Change material 
+                    this.mat.material = BricksManager.Instance.materials[this.Hitpoints - 1];
+                }
             }
-            else
-            {
-                // Change material 
-                this.mat.material = BricksManager.Instance.materials[this.Hitpoints - 1];
-            }
+           
 
         }
     }
