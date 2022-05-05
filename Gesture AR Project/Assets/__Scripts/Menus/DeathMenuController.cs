@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class DeathMenuController : MonoBehaviour
 {
@@ -38,9 +37,6 @@ public class DeathMenuController : MonoBehaviour
         {
             // Game restarted
             isRestarted = true;
-
-            // Reset Score
-            PlayerPrefs.SetInt("Score", 0);
 
             // Change scene to Game Scene
             SceneManager.LoadScene("Game Scene", LoadSceneMode.Single);
