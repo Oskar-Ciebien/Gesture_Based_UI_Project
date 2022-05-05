@@ -109,8 +109,12 @@ public class PaddleBehaviour : MonoBehaviour
         // Reset lives
         PlayerPrefs.SetInt("Lives", GameManager.startingLives);
 
+        print("Before " + PlayerPrefs.GetInt("Score"));
+
         // Reset Score
         PlayerPrefs.SetInt("Score", GameManager.startingScore);
+
+        print("After: " + PlayerPrefs.GetInt("Score"));
     }
 
     public static void Dead()
@@ -120,6 +124,7 @@ public class PaddleBehaviour : MonoBehaviour
 
         // Set new lives
         PlayerPrefs.SetInt("Lives", lives);
+
 
         // If still enough lives left
         if (lives >= 1 && lives <= 3)

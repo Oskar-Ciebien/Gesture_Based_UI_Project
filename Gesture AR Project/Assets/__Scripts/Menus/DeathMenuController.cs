@@ -2,12 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class DeathMenuController : MonoBehaviour
 {
+    // == Private Fields ==
+    public static bool isRestarted;
+
     private void Start()
     {
         BGMusic.BGInstance._audio.pitch = 0.65f;
+    }
+
+    void Awake()
+    {
+        isRestarted = false;
     }
 
     public void MainMenu()
@@ -15,6 +24,8 @@ public class DeathMenuController : MonoBehaviour
         // If on the Death Scene
         if (SceneManager.GetActiveScene().name == "Death Scene")
         {
+            isRestarted = true;
+
             // Change scene to Main Menu Scene
             SceneManager.LoadScene("Main Menu");
         }
@@ -25,8 +36,11 @@ public class DeathMenuController : MonoBehaviour
         // If on the Death Scene
         if (SceneManager.GetActiveScene().name == "Death Scene")
         {
-            // Reset Player
-            PaddleBehaviour.ResetPlayer();
+            // Game restarted
+            isRestarted = true;
+
+            // Reset Score
+            PlayerPrefs.SetInt("Score", 0);
 
             // Change scene to Game Scene
             SceneManager.LoadScene("Game Scene", LoadSceneMode.Single);

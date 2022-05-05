@@ -72,6 +72,16 @@ public class GameData : MonoBehaviour
             }
         }
 
+        // If game restarted
+        if (DeathMenuController.isRestarted == true)
+        {
+            // Reset score
+            score = GameManager.startingScore;
+
+            // Set restarted to false
+            DeathMenuController.isRestarted = false;
+        }
+
         // print("Score: " + score);
 
         // Set score to player prefs
