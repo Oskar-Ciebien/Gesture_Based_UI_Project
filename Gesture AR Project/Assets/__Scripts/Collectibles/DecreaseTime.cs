@@ -11,5 +11,7 @@ public class DecreaseTime : Collectible
     {
         // Decrease game score
         GameData.DecreaseScore(decreaseAmount);
+
+        print("Decrease Time Collected!");
     }
 }

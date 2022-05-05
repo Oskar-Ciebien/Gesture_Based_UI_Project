@@ -10,6 +10,8 @@ public class ExtraLife : Collectible
 
     protected override void AddEffect()
     {
+        print("Extra Life Collected!");
+
         // Get lives from player prefs
         lives = PlayerPrefs.GetInt("Lives");
 

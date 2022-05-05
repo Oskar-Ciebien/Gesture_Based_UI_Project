@@ -34,7 +34,7 @@ public class GameManager : CustomDefaultTrackableEventHandler
             // Disable start info
             startPanel.SetActive(false);
 
-            print("Game and UI Set! - Game Manager");
+            // print("Game and UI Set! - Game Manager");
         }
     }
 }

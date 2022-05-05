@@ -39,46 +39,49 @@ public class GestureManager : MonoBehaviour
         // If on Game Scene
         if (SceneManager.GetActiveScene().name == "Game Scene")
         {
-            if (Input.touchCount > 0)
+            if (CustomDefaultTrackableEventHandler.TrueFalse == true)
             {
-                touch = Input.GetTouch(0);
-
-                // Types of touch phases
-                switch (touch.phase)
+                if (Input.touchCount > 0)
                 {
-                    // Touch Began
-                    case TouchPhase.Began:
-                        //Set starting position
-                        startingTouchPosition = touch.position;
-                        break;
+                    touch = Input.GetTouch(0);
 
-                    // Swiping Gesture
-                    case TouchPhase.Moved:
-                        // Update the touch position
-                        touchPosition = touch.deltaPosition;
+                    // Types of touch phases
+                    switch (touch.phase)
+                    {
+                        // Touch Began
+                        case TouchPhase.Began:
+                            //Set starting position
+                            startingTouchPosition = touch.position;
+                            break;
 
-                        // Only if Vuforia is tracking the image
-                        if (CustomDefaultTrackableEventHandler.TrueFalse == true)
-                        {
-                            // Call movement on the position
-                            PaddleBehaviour.Movement(touchPosition);
-                        }
-                        break;
+                        // Swiping Gesture
+                        case TouchPhase.Moved:
+                            // Update the touch position
+                            touchPosition = touch.deltaPosition;
 
-                    // Touch Ended
-                    case TouchPhase.Ended:
-                        // Set the ending touch position
-                        endingTouchPosition = touch.position;
-                        break;
-                }
+                            // Only if Vuforia is tracking the image
+                            if (CustomDefaultTrackableEventHandler.TrueFalse == true)
+                            {
+                                // Call movement on the position
+                                PaddleBehaviour.Movement(touchPosition);
+                            }
+                            break;
 
-                // If tapped without swipe - (Tap Gesture)
-                if (startingTouchPosition == endingTouchPosition)
-                {
-                    // Start off the ball
-                    BallBehaviour.StartBall();
+                        // Touch Ended
+                        case TouchPhase.Ended:
+                            // Set the ending touch position
+                            endingTouchPosition = touch.position;
+                            break;
+                    }
 
-                    // print("Tap Gesture Recognised!");
+                    // If tapped without swipe - (Tap Gesture)
+                    if (startingTouchPosition == endingTouchPosition)
+                    {
+                        // Start off the ball
+                        BallBehaviour.StartBall();
+
+                        // print("Tap Gesture Recognised!");
+                    }
                 }
             }
         }

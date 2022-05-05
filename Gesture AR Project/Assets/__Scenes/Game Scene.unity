@@ -1893,7 +1893,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600058221}
   m_CullTransparentMesh: 1
---- !u!21 &1626553970
+--- !u!21 &1623304504
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -1902,7 +1902,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: 'MazeMaterial
 
-    26424'
+    33186'
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -2072,6 +2072,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706633528}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1860077503
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7996282747378193943, guid: 99de502aedb65fa4883ce45dd43aeb08, type: 3}
+      propertyPath: m_Name
+      value: FreezePlayerCollectible
+      objectReference: {fileID: 0}
+    - target: {fileID: 7996282747378193949, guid: 99de502aedb65fa4883ce45dd43aeb08, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 7996282747378193949, guid: 99de502aedb65fa4883ce45dd43aeb08, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7996282747378193949, guid: 99de502aedb65fa4883ce45dd43aeb08, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7996282747378193949, guid: 99de502aedb65fa4883ce45dd43aeb08, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 7996282747378193949, guid: 99de502aedb65fa4883ce45dd43aeb08, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.09910989
+      objectReference: {fileID: 0}
+    - target: {fileID: 7996282747378193949, guid: 99de502aedb65fa4883ce45dd43aeb08, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.09910989
+      objectReference: {fileID: 0}
+    - target: {fileID: 7996282747378193949, guid: 99de502aedb65fa4883ce45dd43aeb08, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7001266
+      objectReference: {fileID: 0}
+    - target: {fileID: 7996282747378193949, guid: 99de502aedb65fa4883ce45dd43aeb08, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7001266
+      objectReference: {fileID: 0}
+    - target: {fileID: 7996282747378193949, guid: 99de502aedb65fa4883ce45dd43aeb08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -73.886
+      objectReference: {fileID: 0}
+    - target: {fileID: 7996282747378193949, guid: 99de502aedb65fa4883ce45dd43aeb08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7996282747378193949, guid: 99de502aedb65fa4883ce45dd43aeb08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 99de502aedb65fa4883ce45dd43aeb08, type: 3}
 --- !u!1 &1969267501
 GameObject:
   m_ObjectHideFlags: 0
@@ -2121,7 +2178,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1626553970}
+  - {fileID: 1623304504}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

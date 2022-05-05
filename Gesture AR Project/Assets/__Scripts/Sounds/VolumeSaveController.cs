@@ -35,7 +35,7 @@ public class VolumeSaveController : MonoBehaviour
         PlayerPrefs.SetFloat("VolumeValue", volumeValue);
         PlayerPrefs.SetFloat("SfxValue", sfxValue);
         PlayerPrefs.SetInt("Mute", muteValue);
-        
+
 
         LoadValues();
     }
@@ -52,7 +52,7 @@ public class VolumeSaveController : MonoBehaviour
         BGMusic.BGInstance._audio.volume = volumeValue;
         SFXManager.sfxInstance.Audio.volume = sfxValue;
         AudioListener.volume = (muteValue ? 0 : 1);
-        print(AudioListener.pause);
+        // print(AudioListener.pause);
     }
 
     // Method for playing an sfx sound, only active whilst options menu is active
@@ -62,6 +62,6 @@ public class VolumeSaveController : MonoBehaviour
         {
             SFXManager.sfxInstance.Audio.PlayOneShot(SFXManager.sfxInstance.Clash);
         }
-       
+
     }
 }

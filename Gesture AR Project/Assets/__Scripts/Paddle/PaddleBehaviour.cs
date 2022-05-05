@@ -16,6 +16,7 @@ public class PaddleBehaviour : MonoBehaviour
     public static Quaternion playerRotation;
     public GameObject BallContact;
     public GameObject WallContact;
+    public static bool frozen = false;
 
     // == Private Fields ==
     private static Vector2 leftBorderPos;
@@ -48,33 +49,43 @@ public class PaddleBehaviour : MonoBehaviour
             leftBorderPos = leftBorder.transform.position;
             rightBorderPos = rightBorder.transform.position;
         }
+
+        FrozenPlayer(frozen);
+    }
+
+    public static void FrozenPlayer(bool froze)
+    {
+        frozen = froze;
     }
 
     public static void Movement(Vector2 touchPosition)
     {
-        // Touched left border
-        if (player.transform.position.x < leftBorderPos.x + 2)
+        if (frozen == false)
         {
-            // print("Player collided with left border!");
+            // Touched left border
+            if (player.transform.position.x < leftBorderPos.x + 2)
+            {
+                // print("Player collided with left border!");
 
-            // Move player back inside the borders
-            playerPos = player.transform.position;
-            player.transform.Translate(new Vector3(0, 0.4f, 0));
-        }
-        // Touched right border
-        else if (player.transform.position.x > rightBorderPos.x - 2)
-        {
-            // print("Player collided with right border!");
+                // Move player back inside the borders
+                playerPos = player.transform.position;
+                player.transform.Translate(new Vector3(0, 0.4f, 0));
+            }
+            // Touched right border
+            else if (player.transform.position.x > rightBorderPos.x - 2)
+            {
+                // print("Player collided with right border!");
 
-            // Move player back inside the borders
-            playerPos = player.transform.position;
-            player.transform.Translate(new Vector3(0, -0.4f, 0));
-        }
-        else
-        {
-            // Player Moving
-            playerPos = player.transform.position;
-            player.transform.Translate(new Vector2(0, touchPosition.x * Time.deltaTime));
+                // Move player back inside the borders
+                playerPos = player.transform.position;
+                player.transform.Translate(new Vector3(0, -0.4f, 0));
+            }
+            else
+            {
+                // Player Moving
+                playerPos = player.transform.position;
+                player.transform.Translate(new Vector2(0, touchPosition.x * Time.deltaTime));
+            }
         }
     }
 

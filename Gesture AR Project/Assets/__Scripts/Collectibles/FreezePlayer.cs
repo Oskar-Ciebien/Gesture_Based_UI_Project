@@ -5,26 +5,32 @@ using UnityEngine;
 public class FreezePlayer : Collectible
 {
     // == Private Fields ==
-    private int lives;
+    private static GameObject player = PaddleBehaviour.player;
+    private static Vector2 playerPos;
 
     protected override void AddEffect()
     {
+        // playerPos = player.transform.position;
+
         StartCoroutine(PreventMovement());
     }
 
-    static IEnumerator PreventMovement()
+    IEnumerator PreventMovement()
     {
-        float timePassed = 0;
+        // PaddleBehaviour.rb.constraints = RigidbodyConstraints.FreezeAll;
 
-        PaddleBehaviour.rb.constraints = RigidbodyConstraints.FreezeAll;
+        // PaddleBehaviour.frozen = true;
 
-        while (timePassed < 3)
-        {
-            timePassed += Time.deltaTime;
+        PaddleBehaviour.FrozenPlayer(true);
 
-            yield return null;
-        }
+        // player.transform.Translate(new Vector2(player.transform.position.x, player.transform.position.y));
+        print("Frozen?: " + PaddleBehaviour.frozen);
 
-        PaddleBehaviour.rb.constraints = RigidbodyConstraints.None;
+        yield return new WaitForSeconds(1f);
+
+        PaddleBehaviour.FrozenPlayer(false);
+
+        print("Frozen Here: " + PaddleBehaviour.frozen);
+        // PaddleBehaviour.rb.constraints = RigidbodyConstraints.None;
     }
 }
