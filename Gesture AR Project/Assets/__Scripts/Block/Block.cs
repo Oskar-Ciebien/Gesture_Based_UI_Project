@@ -12,21 +12,15 @@ public class Block : MonoBehaviour
     // == Public Fields ==
     public GameObject breakEffect;
     public GameObject bounceEffect;
-    public static event Action<Block> onBrickDestruction;
+    public static event Action<Block> onBlockDestruction;
 
     // == Private Fields ==
-    private GameObject block;
     private MeshRenderer mat;
     private int Hitpoints = 1;
 
-    void Start()
-    {
-        // Instantiate block object
-        block = this.gameObject;
-    }
-
     private void Awake()
     {
+        // Get the MeshRenderer of the Block
         this.mat = this.GetComponent<MeshRenderer>();
     }
 
@@ -64,30 +58,33 @@ public class Block : MonoBehaviour
 
             foreach (ContactPoint contact in other.contacts)
             {
-                //Instantiate your particle system here.
+                // Instantiate bounce particle effect on block and play the bounce sound effect
                 GameObject partbounce = Instantiate(bounceEffect, contact.point, Quaternion.identity);
                 SFXManager.sfxInstance.Audio.PlayOneShot(SFXManager.sfxInstance.Bounce);
                 partbounce.GetComponent<ParticleSystem>().Play();
+                // Destroy particle system after 3 seconds
                 Destroy(partbounce, 3);
                 if (this.Hitpoints <= 0)
                 {
+                    // Instantiate break particle effect on block and play the break sound effect
                     GameObject partbreak = Instantiate(breakEffect, contact.point, Quaternion.identity);
                     SFXManager.sfxInstance.Audio.PlayOneShot(SFXManager.sfxInstance.Break);
                     partbreak.GetComponent<ParticleSystem>().Play();
                     Destroy(partbreak, 3);
-                    onBrickDestruction?.Invoke(this);
+                    onBlockDestruction?.Invoke(this);
                     // Destroy the block and spawn collectible
                     DestroyWithCollectible();
                 }
                 else
                 {
                     // Change material
-                    this.mat.material = BricksManager.Instance.materials[this.Hitpoints - 1];
+                    this.mat.material = BlocksManager.Instance.materials[this.Hitpoints - 1];
                 }
             }
         }
     }
 
+    // Method for initialising a block based on their level
     public void Init(Transform containerTransform, Material material, Color color, int hitpoints)
     {
         this.transform.SetParent(containerTransform);

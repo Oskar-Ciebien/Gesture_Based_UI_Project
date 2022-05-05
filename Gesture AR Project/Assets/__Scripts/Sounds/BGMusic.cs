@@ -5,10 +5,8 @@ using UnityEngine.UI;
 
 public class BGMusic : MonoBehaviour
 {
+    // == Singleton ==
     public static BGMusic BGInstance;
-
-    public AudioSource _audio;
-
 
     private void Awake()
     {
@@ -22,6 +20,6 @@ public class BGMusic : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-  
 
+    public AudioSource _audio;
 }

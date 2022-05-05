@@ -19,7 +19,8 @@ public class GameManager : CustomDefaultTrackableEventHandler
     {
         // Initialise the instance
         if (instance == null) instance = this;
-        Block.onBrickDestruction += onBlockDestruction;
+        // Subscribe to the onBlockDestruction event from Block
+        Block.onBlockDestruction += onBlockDestruction;
     }
 
     private void Update()
@@ -37,12 +38,13 @@ public class GameManager : CustomDefaultTrackableEventHandler
         }
     }
 
+    // Method that checks if all remaining blocks in the level have been destroyed
     private void onBlockDestruction(Block obj)
     {
-        if (BricksManager.Instance.RemainingBricks.Count <= 0)
+        if (BlocksManager.Instance.RemainingBricks.Count <= 0)
         {
             gameStarted = false;
-            BricksManager.Instance.NewLevel();
+            BlocksManager.Instance.NewLevel();
         }
     }
 }

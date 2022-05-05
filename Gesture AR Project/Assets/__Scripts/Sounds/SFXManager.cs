@@ -4,14 +4,7 @@ using UnityEngine;
 
 public class SFXManager : MonoBehaviour
 {
-    public AudioSource Audio;
-
-    public AudioClip Bounce;
-
-    public AudioClip Clash;
-
-    public AudioClip Break;
-
+    //== Singleton == 
     public static SFXManager sfxInstance;
 
     private void Awake()
@@ -25,6 +18,14 @@ public class SFXManager : MonoBehaviour
         sfxInstance = this;
         DontDestroyOnLoad(this);
     }
+
+    public AudioSource Audio;
+
+    public AudioClip Bounce;
+
+    public AudioClip Clash;
+
+    public AudioClip Break;
 
 
 }

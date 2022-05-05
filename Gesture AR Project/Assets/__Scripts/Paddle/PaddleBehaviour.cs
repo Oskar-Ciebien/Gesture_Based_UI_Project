@@ -205,6 +205,7 @@ public class PaddleBehaviour : MonoBehaviour
         }
     }
 
+    // Coroutine for making the paddle flash on each hit
     IEnumerator Flash(Material material)
     {
         material.SetColor("_EmissionColor", Color.red);
