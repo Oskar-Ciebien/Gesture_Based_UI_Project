@@ -47,7 +47,7 @@ public class BallBehaviour : MonoBehaviour
             // Game started
             GameManager.instance.gameStarted = true;
 
-            print("Game Started!");
+            // print("Game Started!");
         }
     }
 
@@ -61,7 +61,7 @@ public class BallBehaviour : MonoBehaviour
             rb.isKinematic = false;
             rb.AddForce(new Vector2(angleMainMenu, initialSpeed));
 
-            print("Ball Started off in Main Menu!");
+            // print("Ball Started off in Main Menu!");
         }
     }
 
@@ -71,7 +71,7 @@ public class BallBehaviour : MonoBehaviour
         if (other.gameObject.tag == "LeftBorder" || other.gameObject.tag == "RightBorder" || other.gameObject.tag == "TopBorder")
         {
             // Bounce off the border
-            print("Ball Bounced - Border: " + other.gameObject.tag);
+            // print("Ball Bounced - Border: " + other.gameObject.tag);
             SFXManager.sfxInstance.Audio.PlayOneShot(SFXManager.sfxInstance.Bounce);
             foreach (ContactPoint contact in other.contacts)
             {
@@ -91,7 +91,7 @@ public class BallBehaviour : MonoBehaviour
             // Player Dead
             PaddleBehaviour.Dead();
 
-            print("Player Dead! Bottom Border hit!");
+            // print("Player Dead! Bottom Border hit!");
         }
     }
 }

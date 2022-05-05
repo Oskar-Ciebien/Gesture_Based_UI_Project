@@ -5,13 +5,24 @@ using UnityEngine;
 public class DecreaseTime : Collectible
 {
     // == Private Fields ==
-    private int decreaseAmount = 5;
+    private int increaseMinAmount = 20;
+    private int increaseMaxAmount = 50;
+    private int minAmount = 10;
+    private int maxAmount = 30;
 
     protected override void AddEffect()
     {
-        // Decrease game score
-        GameData.DecreaseScore(decreaseAmount);
+        if (GameData.doubleIncrease == true)
+        {
+            // Decrease game score
+            GameData.DecreaseScore(Random.Range(increaseMinAmount, increaseMaxAmount));
+        }
+        else
+        {
+            // Decrease game score
+            GameData.DecreaseScore(Random.Range(minAmount, maxAmount));
+        }
 
-        print("Decrease Time Collected!");
+        // print("Decrease Time Collected!");
     }
 }

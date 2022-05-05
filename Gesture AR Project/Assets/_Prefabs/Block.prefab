@@ -111,5 +111,7 @@ MonoBehaviour:
   collectibleChance: 1
   possibleCollectibles:
   - {fileID: 7996282747378193943, guid: 6a0958609fc1f014eb96e26774a7469f, type: 3}
+  - {fileID: 7996282747378193943, guid: bf7588ff9f4777745b261abaa6b2bb84, type: 3}
+  - {fileID: 7996282747378193943, guid: 3166db15458e3e94d977d608320589c7, type: 3}
   breakEffect: {fileID: 3319775894564188149, guid: faa92bf88ee799841839df3cbc0c1169, type: 3}
   bounceEffect: {fileID: 749766892734774409, guid: 0e895beda47f81249b86549adf641f98, type: 3}
