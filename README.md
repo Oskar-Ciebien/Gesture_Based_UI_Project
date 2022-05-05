@@ -5,17 +5,10 @@
 </div>
 
 ---
+Game Menu             |  Game Display
+:-------------------------:|:-------------------------:
+![alt text](https://github.com/Oskar-Ciebien/Gesture_Based_UI_Project/blob/main/Documentation/Images/MenuPP.PNG?raw=true)  |  ![alt text](https://github.com/Oskar-Ciebien/Gesture_Based_UI_Project/blob/main/Documentation/Images/GamePP.PNG?raw=true)
 
-# Table of Contents
-
-- [Introduction](#introduction)
-- [Requirements](#requirements)
-- [How To Play](#how-to-play)
-- [Image to Scan](#image-to-scan)
-- [Screencast](#screencast)
-- [Contact](#contact)
-
-<br>
 
 ## Introduction
 
@@ -56,12 +49,6 @@ Make sure to use this image, on start-up of the game.
 The game will ask you for an image to scan.
 
 </div>
-
-<br>
-
-## Screencast
-
-The screencast of this game is available [here](). It showcases all of the functionalities and gameplay.
 
 <br>
 
