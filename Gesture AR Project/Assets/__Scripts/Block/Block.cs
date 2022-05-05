@@ -9,18 +9,15 @@ public class Block : MonoBehaviour
     [SerializeField] private float collectibleChance;
     [SerializeField] private GameObject[] possibleCollectibles;
 
+    // == Public Fields ==
+    public GameObject breakEffect;
+    public GameObject bounceEffect;
     public static event Action<Block> onBrickDestruction;
+
     // == Private Fields ==
     private GameObject block;
     private MeshRenderer mat;
     private int Hitpoints = 1;
-    public GameObject breakEffect;
-    public GameObject bounceEffect;
-
-    private void Awake()
-    {
-        this.mat = this.GetComponent<MeshRenderer>();
-    }
 
     void Start()
     {
@@ -28,6 +25,12 @@ public class Block : MonoBehaviour
         block = this.gameObject;
     }
 
+    private void Awake()
+    {
+        this.mat = this.GetComponent<MeshRenderer>();
+    }
+
+    // Destoy and spawn Collectible
     private void DestroyWithCollectible()
     {
         // Destroy the block
@@ -39,6 +42,7 @@ public class Block : MonoBehaviour
             return;
         }
 
+        // Random spawn chance
         if (UnityEngine.Random.Range(0, 1) < collectibleChance)
         {
             // Set random collectible from array
@@ -56,8 +60,8 @@ public class Block : MonoBehaviour
         {
             this.Hitpoints--;
             // Bounce off the border
-            print("Ball Bounced - Border: " + other.gameObject.tag);
-            
+            // print("Ball Bounced - Border: " + other.gameObject.tag);
+
             foreach (ContactPoint contact in other.contacts)
             {
                 //Instantiate your particle system here.
@@ -77,12 +81,10 @@ public class Block : MonoBehaviour
                 }
                 else
                 {
-                    // Change material 
+                    // Change material
                     this.mat.material = BricksManager.Instance.materials[this.Hitpoints - 1];
                 }
             }
-           
-
         }
     }
 

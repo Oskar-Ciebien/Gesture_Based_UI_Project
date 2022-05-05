@@ -12,11 +12,13 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        // Pause game
         Time.timeScale = 0;
     }
 
     public void Resume()
     {
+        // Resume game
         Time.timeScale = 1;
     }
 

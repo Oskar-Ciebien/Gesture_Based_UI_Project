@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-
     private void Start()
     {
         BGMusic.BGInstance._audio.pitch = 1.0f;

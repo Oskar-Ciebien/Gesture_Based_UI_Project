@@ -13,8 +13,6 @@ public class BallBehaviour : MonoBehaviour
     public static float initialSpeed = 10f;
 
     // == Private Fields ==
-    private Vector3 paddlePos;
-    private static Vector3 startingPos;
     private static GameObject ball;
     private static Rigidbody rb;
     private static float angleMainMenu = 5f;
@@ -22,10 +20,13 @@ public class BallBehaviour : MonoBehaviour
 
     private void Start()
     {
+        // This instance
         ball = this.gameObject;
 
+        // Rigidbody
         rb = ball.GetComponent<Rigidbody>();
 
+        // Set object rotation
         objectsRotation = objects.transform.rotation;
     }
 
@@ -35,11 +36,13 @@ public class BallBehaviour : MonoBehaviour
         rb.velocity = rb.velocity.normalized * initialSpeed;
     }
 
+    // Start Ball in Game Scene
     public static void StartBall()
     {
         // If game not started
         if (GameManager.instance.gameStarted == false)
         {
+            // Set ball rotation
             ball.transform.rotation = objectsRotation;
 
             // Let the ball free
@@ -53,28 +56,16 @@ public class BallBehaviour : MonoBehaviour
         }
     }
 
-    // Start Ball in Main Menu
-    public static void StartBallMenu()
-    {
-        // If game not started and on main menu scene
-        if (GameManager.instance.gameStarted == false && SceneManager.GetActiveScene().name == "Main Menu")
-        {
-            // Let the ball free on an angle
-            rb.isKinematic = false;
-            rb.AddForce(new Vector2(angleMainMenu, initialSpeed));
-
-            // print("Ball Started off in Main Menu!");
-        }
-    }
-
     private void OnCollisionEnter(Collision other)
     {
         // If hit left, top or right border
         if (other.gameObject.tag == "LeftBorder" || other.gameObject.tag == "RightBorder" || other.gameObject.tag == "TopBorder")
         {
-            // Bounce off the border
             // print("Ball Bounced - Border: " + other.gameObject.tag);
+
+            // Play Sound
             SFXManager.sfxInstance.Audio.PlayOneShot(SFXManager.sfxInstance.Bounce);
+
             foreach (ContactPoint contact in other.contacts)
             {
                 //Instantiate your particle system here.

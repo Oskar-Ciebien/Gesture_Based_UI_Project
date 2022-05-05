@@ -13,7 +13,6 @@ public class PaddleBehaviour : MonoBehaviour
     public static Rigidbody rb;
     public static GameObject player;
     public static Vector3 playerPos;
-    public static Quaternion playerRotation;
     public GameObject BallContact;
     public GameObject WallContact;
     public static bool frozen = false;
@@ -24,7 +23,7 @@ public class PaddleBehaviour : MonoBehaviour
     private Material m_Material;
     private float force = 10f;
     private static int lives;
-    private static int score;
+    private int freezeTime = 2;
 
     void Start()
     {
@@ -45,8 +44,10 @@ public class PaddleBehaviour : MonoBehaviour
 
     void Update()
     {
+        // If vuforia connected with image
         if (CustomDefaultTrackableEventHandler.TrueFalse == true)
         {
+            // Set the border positions
             leftBorderPos = leftBorder.transform.position;
             rightBorderPos = rightBorder.transform.position;
         }
@@ -59,10 +60,13 @@ public class PaddleBehaviour : MonoBehaviour
 
     IEnumerator PreventMovement()
     {
+        // Freeze player
         PaddleBehaviour.frozen = true;
 
-        yield return new WaitForSeconds(2);
+        // Wait for unfreeze
+        yield return new WaitForSeconds(freezeTime);
 
+        // Unfreeze player
         PaddleBehaviour.frozen = false;
     }
 
@@ -120,6 +124,7 @@ public class PaddleBehaviour : MonoBehaviour
         // If still enough lives left
         if (lives >= 1 && lives <= 3)
         {
+            // Game not started for ball to start off timer
             GameManager.instance.gameStarted = false;
 
             // Restart Scene
@@ -128,6 +133,7 @@ public class PaddleBehaviour : MonoBehaviour
         // If no more lives left
         else
         {
+            // Game not started for ball to start off timer
             GameManager.instance.gameStarted = false;
 
             // Set the death scene
@@ -141,6 +147,7 @@ public class PaddleBehaviour : MonoBehaviour
         // Unfreeze player
         frozen = false;
 
+        // Current Scene
         Scene currentScene = SceneManager.GetActiveScene();
 
         // Load the Scene

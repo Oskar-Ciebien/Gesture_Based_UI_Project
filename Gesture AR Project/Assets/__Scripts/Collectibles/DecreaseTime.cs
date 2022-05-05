@@ -12,9 +12,10 @@ public class DecreaseTime : Collectible
 
     protected override void AddEffect()
     {
+        // If player already collected double score count collectible
         if (GameData.doubleIncrease == true)
         {
-            // Decrease game score
+            // Decrease game score * 2 - Make it easier a little bit
             GameData.DecreaseScore(Random.Range(increaseMinAmount, increaseMaxAmount));
         }
         else

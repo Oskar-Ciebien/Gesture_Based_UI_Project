@@ -13,9 +13,7 @@ public class GameManager : CustomDefaultTrackableEventHandler
     public static GameManager instance;
     public bool gameStarted { get; set; }
     public static int startingLives = 3;
-    public static int lives;
     public static int startingScore = 0;
-    public static int score;
 
     private void Awake()
     {

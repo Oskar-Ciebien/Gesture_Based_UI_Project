@@ -39,6 +39,7 @@ public class GestureManager : MonoBehaviour
         // If on Game Scene
         if (SceneManager.GetActiveScene().name == "Game Scene")
         {
+            // If Vuforia connected with image
             if (CustomDefaultTrackableEventHandler.TrueFalse == true)
             {
                 if (Input.touchCount > 0)

@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class FreezePlayer : Collectible
 {
-    // == Private Fields ==
-    private static GameObject player = PaddleBehaviour.player;
-    private static Vector2 playerPos;
-
     protected override void AddEffect()
     {
+        // Set PaddleBehaviour
         var behaviour = PaddleBehaviour.player.GetComponent<PaddleBehaviour>();
 
+        // Freeze Player
         behaviour.FrozenPlayer();
     }
 }
