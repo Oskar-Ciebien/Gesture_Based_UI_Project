@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acace441d273884fa01d9cf0ed97872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectibleChance: 0.4
+  collectibleChance: 3
   possibleCollectibles:
   - {fileID: 7996282747378193943, guid: 6a0958609fc1f014eb96e26774a7469f, type: 3}
   - {fileID: 7996282747378193943, guid: bf7588ff9f4777745b261abaa6b2bb84, type: 3}

@@ -43,7 +43,7 @@ public class Block : MonoBehaviour
         }
 
         // Random spawn chance
-        if (UnityEngine.Random.Range(0, 1) < collectibleChance)
+        if (UnityEngine.Random.Range(0, 10) < collectibleChance)
         {
             // Set random collectible from array
             var randomCollectible = possibleCollectibles[UnityEngine.Random.Range(0, possibleCollectibles.Length)];

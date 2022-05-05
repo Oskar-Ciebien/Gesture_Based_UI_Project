@@ -15,7 +15,6 @@ public class BallBehaviour : MonoBehaviour
     // == Private Fields ==
     private static GameObject ball;
     private static Rigidbody rb;
-    private static float angleMainMenu = 5f;
     private static Quaternion objectsRotation;
 
     private void Start()
