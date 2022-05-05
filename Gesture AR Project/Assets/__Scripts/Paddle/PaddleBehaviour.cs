@@ -171,30 +171,17 @@ public class PaddleBehaviour : MonoBehaviour
             if (hitPoint.x < paddleCenter.x)
             {
                 // Add force to the ball to the left
-                ballRB.AddForce(new Vector2(-(Mathf.Abs(difference * force)), BallBehaviour.initialSpeed));
+                ballRB.AddForce(new Vector3(-BallBehaviour.initialSpeed, 0, Mathf.Abs(difference * force)));
             }
             else // Right side of paddle hit
             {
                 // Add force to the ball to the right
-                ballRB.AddForce(new Vector2((Mathf.Abs(difference * force)), BallBehaviour.initialSpeed));
-            }
-        }
-
-        // If hit the left, top and right border
-        if (other.gameObject.tag == "LeftBorder" || other.gameObject.tag == "RightBorder" || other.gameObject.tag == "TopBorder")
-        {
-            foreach (ContactPoint contact in other.contacts)
-            {
-                //Instantiate your particle system here.
-                GameObject part = Instantiate(WallContact, contact.point, Quaternion.identity);
-                part.GetComponent<ParticleSystem>().Play();
-                StartCoroutine(Flash(m_Material));
-                Destroy(part, 3);
+                ballRB.AddForce(new Vector3(BallBehaviour.initialSpeed, 0, Mathf.Abs(difference * force)));
             }
         }
     }
 
-    IEnumerator Flash(Material material)
+        IEnumerator Flash(Material material)
     {
         material.SetColor("_EmissionColor", Color.red);
         yield return new WaitForSeconds(0.2f);

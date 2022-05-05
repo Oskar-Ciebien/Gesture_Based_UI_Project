@@ -27,7 +27,7 @@ public class BallBehaviour : MonoBehaviour
         objectsRotation = objects.transform.rotation;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         // Constant Same Speed of Ball
         rb.velocity = rb.velocity.normalized * initialSpeed;
@@ -42,7 +42,7 @@ public class BallBehaviour : MonoBehaviour
 
             // Let the ball free
             rb.isKinematic = false;
-            rb.AddForce(new Vector3(initialSpeed, 0, 0));
+            rb.AddForce(new Vector3(0, 0, initialSpeed));
 
             // Game started
             GameManager.gameStarted = true;
