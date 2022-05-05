@@ -1962,7 +1962,7 @@ MonoBehaviour:
   - {r: 0.4952253, g: 1, b: 0, a: 1}
   - {r: 1, g: 0, b: 0.07817793, a: 1}
   brickPrefab: {fileID: 2890746736765885855, guid: 2160f1bdeb5638d4f9a613461b9bfef8, type: 3}
-  CurrentLevel: 0
+  CurrentLevel: 1
 --- !u!4 &1697927382
 Transform:
   m_ObjectHideFlags: 0
