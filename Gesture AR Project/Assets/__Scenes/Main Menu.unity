@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI Main Menu Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2866160415420882102, guid: ebe011be523e7c947a199b7bf1c5f8ca, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 4554355274979210340}
     - target: {fileID: 6228864667485029505, guid: ebe011be523e7c947a199b7bf1c5f8ca, type: 3}
       propertyPath: m_Pivot.x
       value: 0
