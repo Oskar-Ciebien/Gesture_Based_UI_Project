@@ -10,11 +10,13 @@ public class GameData : MonoBehaviour
     public static GameData singleton;
     public TextMeshProUGUI scoreText = null;
     public TextMeshProUGUI livesText = null;
+    public static bool doubleIncrease = false;
 
     // == Private Fields ==
     private static int score = 0;
     private float lastUpdate = 0;
     private int oneSecond = 1;
+    private int doubleScore = 2;
 
     private void Awake()
     {
@@ -54,8 +56,16 @@ public class GameData : MonoBehaviour
             // If time is just one second from last update
             if (Time.time - lastUpdate >= 1f)
             {
-                // Add to score
-                score += oneSecond;
+                if (doubleIncrease == true)
+                {
+                    // Add to score
+                    score += oneSecond * doubleScore;
+                }
+                else
+                {
+                    // Add to score
+                    score += oneSecond;
+                }
 
                 // Set the new last update
                 lastUpdate = Time.time;
