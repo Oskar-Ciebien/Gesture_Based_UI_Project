@@ -24,6 +24,7 @@ public class PaddleBehaviour : MonoBehaviour
     private Material m_Material;
     private float force = 10f;
     private static int lives;
+    private static int score;
 
     void Start()
     {
@@ -46,11 +47,9 @@ public class PaddleBehaviour : MonoBehaviour
     {
         if (CustomDefaultTrackableEventHandler.TrueFalse == true)
         {
-            leftBorderPos = leftBorder.transform.position ;
+            leftBorderPos = leftBorder.transform.position;
             rightBorderPos = rightBorder.transform.position;
         }
-
-      
     }
 
     public static void FrozenPlayer(bool froze)
@@ -93,6 +92,9 @@ public class PaddleBehaviour : MonoBehaviour
     {
         // Reset lives
         PlayerPrefs.SetInt("Lives", GameManager.startingLives);
+
+        // Reset Score
+        PlayerPrefs.SetInt("Score", GameManager.startingScore);
     }
 
     public static void Dead()
@@ -127,7 +129,7 @@ public class PaddleBehaviour : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
 
         // Load the Scene
-        SceneManager.LoadScene(currentScene.name, LoadSceneMode.Single);
+        SceneManager.LoadScene(currentScene.name);
     }
 
     // Show the DeathScene - Player Died (No more lives)
@@ -181,7 +183,7 @@ public class PaddleBehaviour : MonoBehaviour
         }
     }
 
-        IEnumerator Flash(Material material)
+    IEnumerator Flash(Material material)
     {
         material.SetColor("_EmissionColor", Color.red);
         yield return new WaitForSeconds(0.2f);

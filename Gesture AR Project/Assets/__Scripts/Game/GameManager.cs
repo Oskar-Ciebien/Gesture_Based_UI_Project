@@ -23,10 +23,7 @@ public class GameManager : CustomDefaultTrackableEventHandler
         if (instance == null) instance = this;
         Block.onBrickDestruction += onBlockDestruction;
     }
-    private void Start()
-    {
-        Block.onBrickDestruction += onBlockDestruction;
-    }
+
     private void Update()
     {
         if (CustomDefaultTrackableEventHandler.TrueFalse == true)
@@ -44,7 +41,7 @@ public class GameManager : CustomDefaultTrackableEventHandler
 
     private void onBlockDestruction(Block obj)
     {
-        if(BricksManager.Instance.RemainingBricks.Count <= 0)
+        if (BricksManager.Instance.RemainingBricks.Count <= 0)
         {
             gameStarted = false;
             BricksManager.Instance.NewLevel();

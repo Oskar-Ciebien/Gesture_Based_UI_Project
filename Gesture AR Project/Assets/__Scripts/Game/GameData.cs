@@ -37,7 +37,6 @@ public class GameData : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Game Scene")
         {
-            score = 0;
             // Set score to player prefs
             PlayerPrefs.SetInt("Score", score);
         }

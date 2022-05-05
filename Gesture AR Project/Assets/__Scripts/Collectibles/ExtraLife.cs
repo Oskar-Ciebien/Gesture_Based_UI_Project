@@ -5,7 +5,6 @@ using UnityEngine;
 public class ExtraLife : Collectible
 {
     // == Private Fields ==
-    private int lifeAmount = 1;
     private int lives;
 
     protected override void AddEffect()
