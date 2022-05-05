@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class BallBehaviour : MonoBehaviour
 {
+    // == Serialized Fields ==
     [SerializeField] GameObject objects;
+
     // == Public Fields ==
     public GameObject WallContact;
     public static float initialSpeed = 10f;

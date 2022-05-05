@@ -10,27 +10,8 @@ public class FreezePlayer : Collectible
 
     protected override void AddEffect()
     {
-        // playerPos = player.transform.position;
+        var behaviour = PaddleBehaviour.player.GetComponent<PaddleBehaviour>();
 
-        StartCoroutine(PreventMovement());
-    }
-
-    IEnumerator PreventMovement()
-    {
-        // PaddleBehaviour.rb.constraints = RigidbodyConstraints.FreezeAll;
-
-        // PaddleBehaviour.frozen = true;
-
-        PaddleBehaviour.FrozenPlayer(true);
-
-        // player.transform.Translate(new Vector2(player.transform.position.x, player.transform.position.y));
-        print("Frozen?: " + PaddleBehaviour.frozen);
-
-        yield return new WaitForSeconds(1f);
-
-        PaddleBehaviour.FrozenPlayer(false);
-
-        print("Frozen Here: " + PaddleBehaviour.frozen);
-        // PaddleBehaviour.rb.constraints = RigidbodyConstraints.None;
+        behaviour.FrozenPlayer();
     }
 }

@@ -52,9 +52,18 @@ public class PaddleBehaviour : MonoBehaviour
         }
     }
 
-    public static void FrozenPlayer(bool froze)
+    public void FrozenPlayer()
     {
-        frozen = froze;
+        StartCoroutine(PreventMovement());
+    }
+
+    IEnumerator PreventMovement()
+    {
+        PaddleBehaviour.frozen = true;
+
+        yield return new WaitForSeconds(2);
+
+        PaddleBehaviour.frozen = false;
     }
 
     public static void Movement(Vector2 touchPosition)
@@ -90,6 +99,9 @@ public class PaddleBehaviour : MonoBehaviour
 
     public static void ResetPlayer()
     {
+        // Unfreeze player
+        frozen = false;
+
         // Reset lives
         PlayerPrefs.SetInt("Lives", GameManager.startingLives);
 
@@ -126,6 +138,9 @@ public class PaddleBehaviour : MonoBehaviour
     // Restart the Game - Player Died (Still has lives)
     public static void RestartScene()
     {
+        // Unfreeze player
+        frozen = false;
+
         Scene currentScene = SceneManager.GetActiveScene();
 
         // Load the Scene
